@@ -10,59 +10,68 @@ function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
   });
+  const [activeModal, setActiveModal] = useState("");
+
+  const onAddClick = () => {
+    setActiveModal("add-garment");
+  };
+  const onClose = () => {
+    setActiveModal("");
+  };
 
   return (
     <div className="page">
       <div className="page__content">
-        <Header />
+        <Header onAddClick={onAddClick} />
         <Main weatherData={weatherData} />
         <Footer />
       </div>
-      <ModalWithForm title="New garment" buttonText="Add garment">
+      <ModalWithForm
+        name="New garment"
+        title="New garment"
+        buttonText="Add garment"
+        activeModal={activeModal}
+        onClose={onClose}
+      >
         <label htmlFor="name" className="modal__label">
-            Name
-            <input
-              id="name"
-              type="text"
-              className="modal__input"
-              placeholder="Name"
-            ></input>
+          Name
+          <input
+            id="name"
+            type="text"
+            className="modal__input"
+            placeholder="Name"
+          ></input>
+        </label>
+        <label htmlFor="imageURL" className="modal__label">
+          Image
+          <input
+            id="imageURL"
+            type="url"
+            className="modal__input"
+            placeholder="Image URL"
+          ></input>
+        </label>
+        <fieldset className="modal__radio-buttons">
+          <legend className="modal__legend">Select the weather type:</legend>
+          <label htmlFor="hot" className="modal__label modal__label_type_radio">
+            <input id="hot" type="radio" className="modal__radio-input" /> Hot
+            <span className="modal__radio-span_type_black"></span>
           </label>
-          <label htmlFor="imageURL" className="modal__label">
-            Image
-            <input
-              id="imageURL"
-              type="url"
-              className="modal__input"
-              placeholder="Image URL"
-            ></input>
+          <label
+            htmlFor="warm"
+            className="modal__label modal__label_type_radio"
+          >
+            <input id="warm" type="radio" className="modal__radio-input" /> Warm
+            <span className="modal__radio-span_type_black"></span>
           </label>
-          <fieldset className="modal__radio-buttons">
-            <legend className="modal__legend">Select the weather type:</legend>
-            <label
-              htmlFor="hot"
-              className="modal__label modal__label_type_radio"
-            >
-              <input id="hot" type="radio" className="modal__radio-input" /> Hot
-              <span className="modal__radio-span_type_black"></span>
-            </label>
-            <label
-              htmlFor="warm"
-              className="modal__label modal__label_type_radio"
-            >
-              <input id="warm" type="radio" className="modal__radio-input" />{" "}
-              Warm
-              <span className="modal__radio-span_type_black"></span>
-            </label>
-            <label
-              htmlFor="cold"
-              className="modal__label modal__label_type_radio"
-            >
-              <input id="cold" type="radio" className="modal__radio-input" />{" "}
-              Cold
-              <span className="modal__radio-span_type_black"></span>
-            </label>
-          </fieldset>
+          <label
+            htmlFor="cold"
+            className="modal__label modal__label_type_radio"
+          >
+            <input id="cold" type="radio" className="modal__radio-input" /> Cold
+            <span className="modal__radio-span_type_black"></span>
+          </label>
+        </fieldset>
       </ModalWithForm>
     </div>
   );
