@@ -1,0 +1,33 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__form {
+  position: relative;
+  padding: 28px 28px 36px;
+  width: 496px;
+  height: 436px;
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+.modal__title {
+  margin: 0 0 24px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
