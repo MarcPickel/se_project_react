@@ -1,0 +1,14 @@
+@font-face {
+  src: url("../../vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Regular.woff");
+  font-family: "Cabinet Grotesk";
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__text {
+  font-family: "Cabinet Grotesk";
+  font-size: 16px;
+}

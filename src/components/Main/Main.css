@@ -15,7 +15,7 @@
 }
 
 .cards__list {
-  margin: 0;
+  margin: 0 0 85px;
   padding: 0;
   list-style-type: none;
   display: flex;
