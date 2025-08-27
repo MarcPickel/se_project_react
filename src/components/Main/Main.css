@@ -1,0 +1,24 @@
+@font-face {
+  src: url("../../vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Regular.woff");
+  font-family: "Cabinet Grotesk";
+}
+
+.cards {
+  max-width: 1360px;
+}
+
+.cards__text {
+  margin: 0 0 24px;
+  font-family: "Cabinet Grotesk", Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.cards__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
