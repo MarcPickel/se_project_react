@@ -6,10 +6,14 @@ import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
+import { coordinates, APIkey } from "../../utils/constants.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
-    type: "cold",
+    type: "",
+    temp: { F: 451 },
+    city: "",
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -32,6 +36,15 @@ function App() {
     setSelectedCard(card);
   };
 
+  useEffect(() => {
+    getWeather(coordinates, APIkey)
+      .then((data) => {
+        const filteredData = filterWeatherData(data);
+        setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
   /*useEffect(() => {
     function handleEscapeClose(evt) {
       if (evt.key === "Escape") {
@@ -49,7 +62,7 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header onAddClick={onAddClick} />
+        <Header onAddClick={onAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
