@@ -5,12 +5,14 @@ import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+import ItemModal from "../ItemModal/ItemModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
   });
   const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
 
   const onAddClick = () => {
     setActiveModal("add-garment");
@@ -19,8 +21,18 @@ function App() {
     setActiveModal("");
   };
 
-  {
-    /*useEffect(() => {
+  const handleOverlayClose = (evt) => {
+    if (evt.target.classList.contains("modal")) {
+      setActiveModal("");
+    }
+  };
+
+  const handleCardClick = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
+
+  /*useEffect(() => {
     function handleEscapeClose(evt) {
       if (evt.key === "Escape") {
         setActiveModal("");
@@ -33,19 +45,12 @@ function App() {
       document.removeEventListener("keydown", handleEscapeClose);
     };
   });*/
-  }
-
-  const handleOverlayClose = (evt) => {
-    if (evt.target.classList.contains("modal")) {
-      setActiveModal("");
-    }
-  };
 
   return (
     <div className="page">
       <div className="page__content">
         <Header onAddClick={onAddClick} />
-        <Main weatherData={weatherData} />
+        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
       <ModalWithForm
@@ -96,6 +101,13 @@ function App() {
           </label>
         </fieldset>
       </ModalWithForm>
+      <ItemModal
+        name="preview"
+        activeModal={activeModal}
+        card={selectedCard}
+        onClose={onClose}
+        onOverlayClose={handleOverlayClose}
+      />
     </div>
   );
 }
