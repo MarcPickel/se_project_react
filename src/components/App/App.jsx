@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";
@@ -19,6 +19,28 @@ function App() {
     setActiveModal("");
   };
 
+  {
+    /*useEffect(() => {
+    function handleEscapeClose(evt) {
+      if (evt.key === "Escape") {
+        setActiveModal("");
+      }
+    }
+
+    document.addEventListener("keydown", handleEscapeClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeClose);
+    };
+  });*/
+  }
+
+  const handleOverlayClose = (evt) => {
+    if (evt.target.classList.contains("modal")) {
+      setActiveModal("");
+    }
+  };
+
   return (
     <div className="page">
       <div className="page__content">
@@ -32,6 +54,8 @@ function App() {
         buttonText="Add garment"
         activeModal={activeModal}
         onClose={onClose}
+        onEscapeClose={handleEscapeClose}
+        onOverlayClose={handleOverlayClose}
       >
         <label htmlFor="name" className="modal__label">
           Name
