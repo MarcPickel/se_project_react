@@ -3,10 +3,15 @@ import logo from "../../assets/wtwr-logo.svg";
 import avatar from "../../assets/avatar.png";
 
 function Header({ onAddClick }) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="WTWR" />
-      <p className="header__date-and-location">Date, Location</p>
+      <p className="header__date-and-location">{currentDate}, Location</p>
       <button
         onClick={onAddClick}
         type="button"
