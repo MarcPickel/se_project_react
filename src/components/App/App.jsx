@@ -54,7 +54,6 @@ function App() {
         buttonText="Add garment"
         activeModal={activeModal}
         onClose={onClose}
-        onEscapeClose={handleEscapeClose}
         onOverlayClose={handleOverlayClose}
       >
         <label htmlFor="name" className="modal__label">

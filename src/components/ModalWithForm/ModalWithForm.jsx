@@ -7,13 +7,11 @@ function ModalWithForm({
   buttonText,
   activeModal,
   onClose,
-  onEscapeClose,
   onOverlayClose,
 }) {
   return (
     <div
       onClick={onOverlayClose}
-      onKeyDown={onEscapeClose}
       className={`modal ${
         activeModal === "add-garment" && "modal_opened"
       } modal_type_${name}`}
