@@ -1,63 +1,63 @@
 export const weatherOptions = [
   {
     day: true,
+    condition: "sunny",
+    url: new URL("../assets/day/clear", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "clouds",
+    url: new URL("../assets/day/cloudy", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "fog",
+    url: new URL("../assets/day/fog", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "rain",
+    url: new URL("../assets/day/rain", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "snow",
+    url: new URL("../assets/day/snow", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "storm",
+    url: new URL("../assets/day/storm", import.meta.url).href,
+  },
+  {
+    day: false,
     condition: "clear",
-    url: new URL("../assets", import.meta.url),
-  },
-  {
-    day: true,
-    condition: "cloudy",
-    url: new URL("", import.meta.url),
-  },
-  {
-    day: true,
-    condition: "foggy",
-    url: new URL("", import.meta.url),
-  },
-  {
-    day: true,
-    condition: "rainy",
-    url: new URL("", import.meta.url),
-  },
-  {
-    day: true,
-    condition: "snowy",
-    url: new URL("", import.meta.url),
-  },
-  {
-    day: true,
-    condition: "stormy",
-    url: new URL("", import.meta.url),
-  },
-  {
-    day: false,
-    condition: "clear",
-    url: new URL("", import.meta.url),
+    url: new URL("../assets/day/clear", import.meta.url).href,
   },
   {
     day: false,
     condition: "cloudy",
-    url: new URL("", import.meta.url),
+    url: new URL("../assets/day/cloudy", import.meta.url).href,
   },
   {
     day: false,
-    condition: "foggy",
-    url: new URL("", import.meta.url),
+    condition: "fog",
+    url: new URL("../assets/day/fog", import.meta.url).href,
   },
   {
     day: false,
-    condition: "rainy",
-    url: new URL("", import.meta.url),
+    condition: "rain",
+    url: new URL("../assets/day/rain", import.meta.url).href,
   },
   {
     day: false,
-    condition: "snowy",
-    url: new URL("", import.meta.url),
+    condition: "snow",
+    url: new URL("../assets/day/snow", import.meta.url).href,
   },
   {
     day: false,
-    condition: "stormy",
-    url: new URL("", import.meta.url),
+    condition: "storm",
+    url: new URL("../assets/day/storm", import.meta.url).href,
   },
 ];
 
