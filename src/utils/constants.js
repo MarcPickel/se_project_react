@@ -7,7 +7,7 @@ export const weatherOptions = [
   {
     day: true,
     condition: "clouds",
-    url: new URL("../assets/day/cloudy.png", import.meta.url).href,
+    url: new URL("../assets/day/clouds.png", import.meta.url).href,
   },
   {
     day: true,
@@ -32,32 +32,32 @@ export const weatherOptions = [
   {
     day: false,
     condition: "clear",
-    url: new URL("../assets/day/clear.png", import.meta.url).href,
+    url: new URL("../assets/night/clear.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "clouds",
-    url: new URL("../assets/day/cloudy.png", import.meta.url).href,
+    url: new URL("../assets/night/clouds.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "fog",
-    url: new URL("../assets/day/fog.png", import.meta.url).href,
+    url: new URL("../assets/night/fog.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "rain",
-    url: new URL("../assets/day/rain.png", import.meta.url).href,
+    url: new URL("../assets/night/rain.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "snow",
-    url: new URL("../assets/day/snow.png", import.meta.url).href,
+    url: new URL("../assets/night/snow.png", import.meta.url).href,
   },
   {
     day: false,
     condition: "storm",
-    url: new URL("../assets/day/storm.png", import.meta.url).href,
+    url: new URL("../assets/night/storm.png", import.meta.url).href,
   },
 ];
 
@@ -66,6 +66,6 @@ const coordinates = {
   longitude: -96.721992,
 };
 
-const APIkey = "f3076ab8f54542e1ef847f148ec82b59";
+const apiKey = "f3076ab8f54542e1ef847f148ec82b59";
 
-export { coordinates, APIkey };
+export { coordinates, apiKey };

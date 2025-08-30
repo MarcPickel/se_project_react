@@ -6,6 +6,7 @@ import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
+import { defaultClothingItems } from "../../utils/clothingItems.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, APIkey } from "../../utils/constants.js";
 
@@ -17,12 +18,17 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [selectedClothes, setSelectedClothes] = useState(defaultClothingItems);
 
   const onAddClick = () => {
     setActiveModal("add-garment");
   };
   const onClose = () => {
     setActiveModal("");
+  };
+
+  const onAddSubmit = () => {
+    setSelectedClothes([]);
   };
 
   const handleOverlayClose = (evt) => {
@@ -63,11 +69,15 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header onAddClick={onAddClick} weatherData={weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Main
+          weatherData={weatherData}
+          handleCardClick={handleCardClick}
+          selectedClothes={selectedClothes}
+        />
         <Footer />
       </div>
       <ModalWithForm
-        name="New garment"
+        name="add-garment"
         title="New garment"
         buttonText="Add garment"
         activeModal={activeModal}
@@ -95,21 +105,42 @@ function App() {
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
           <label htmlFor="hot" className="modal__label modal__label_type_radio">
-            <input id="hot" type="radio" className="modal__radio-input" /> Hot
+            <input
+              id="hot"
+              name="weather"
+              value="hot"
+              type="radio"
+              className="modal__radio-input"
+            />{" "}
+            Hot
             <span className="modal__radio-span_type_black"></span>
           </label>
           <label
             htmlFor="warm"
             className="modal__label modal__label_type_radio"
           >
-            <input id="warm" type="radio" className="modal__radio-input" /> Warm
+            <input
+              id="warm"
+              name="weather"
+              value="warm"
+              type="radio"
+              className="modal__radio-input"
+            />{" "}
+            Warm
             <span className="modal__radio-span_type_black"></span>
           </label>
           <label
             htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio-input" /> Cold
+            <input
+              id="cold"
+              name="weather"
+              value="cold"
+              type="radio"
+              className="modal__radio-input"
+            />{" "}
+            Cold
             <span className="modal__radio-span_type_black"></span>
           </label>
         </fieldset>
