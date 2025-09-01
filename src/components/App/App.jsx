@@ -8,7 +8,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { defaultClothingItems } from "../../utils/clothingItems.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
-import { coordinates, APIkey } from "../../utils/constants.js";
+import { coordinates, apiKey } from "../../utils/constants.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -33,7 +33,7 @@ function App() {
 
   const handleOverlayClose = (evt) => {
     if (evt.target.classList.contains("modal")) {
-      setActiveModal("");
+      onClose();
     }
   };
 
@@ -43,7 +43,7 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
@@ -51,19 +51,21 @@ function App() {
       .catch(console.error);
   }, []);
 
-  /*useEffect(() => {
-    function handleEscapeClose(evt) {
-      if (evt.key === "Escape") {
-        setActiveModal("");
-      }
-    }
+  useEffect(() => {
+    if (!activeModal) return;
 
-    document.addEventListener("keydown", handleEscapeClose);
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
 
     return () => {
-      document.removeEventListener("keydown", handleEscapeClose);
+      document.removeEventListener("keydown", handleEscClose);
     };
-  });*/
+  }, [activeModal]);
 
   return (
     <div className="page">
@@ -80,7 +82,7 @@ function App() {
         name="add-garment"
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garment"}
         onClose={onClose}
         onOverlayClose={handleOverlayClose}
       >
