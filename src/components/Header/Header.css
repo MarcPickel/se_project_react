@@ -16,10 +16,12 @@
 }
 
 .header__add-clothes-button {
-  margin-left: auto;
+  margin-left: 20px;
+  padding: 0;
   border: none;
   font-family: "Cabinet Grotesk";
   font-weight: bold;
+  cursor: pointer;
 }
 
 .header__user-container {
