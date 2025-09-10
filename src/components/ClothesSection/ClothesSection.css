@@ -2,3 +2,34 @@
   src: url("../../vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Regular.woff");
   font-family: "Cabinet Grotesk";
 }
+
+.clothes-section__cards-list {
+  margin: 0 0 85px;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.clothes-section__text-group {
+  display: flex;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+}
+
+.clothes-section__text {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.clothes-section__add-button {
+  margin: 0 0 0 20px;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+  border: none;
+  background-color: transparent;
+  opacity: 60%;
+}
