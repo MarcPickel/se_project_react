@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import Profile from "../Profile/Profile.jsx";
 import { defaultClothingItems } from "../../utils/clothingItems.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
@@ -102,7 +103,7 @@ function App() {
             ></Route>
             <Route
               path="/se_project_react/profile"
-              element={<p>PROFILE</p>}
+              element={<Profile></Profile>}
             ></Route>
           </Routes>
           <Footer />

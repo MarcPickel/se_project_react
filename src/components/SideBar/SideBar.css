@@ -1,0 +1,13 @@
+@font-face {
+  src: url("../../vendor/fonts/cabinet-grotesk-webfont/CabinetGrotesk-Regular.woff");
+  font-family: "Cabinet Grotesk";
+}
+
+.sidebar {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__username {
+  margin-left: 16px;
+}
