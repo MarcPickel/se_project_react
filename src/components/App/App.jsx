@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";
@@ -88,11 +89,22 @@ function App() {
       >
         <div className="page__content">
           <Header onAddClick={onAddClick} weatherData={weatherData} />
-          <Main
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-            clothingItems={clothingItems}
-          />
+          <Routes>
+            <Route
+              path="/se_project_react"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            ></Route>
+            <Route
+              path="/se_project_react/profile"
+              element={<p>PROFILE</p>}
+            ></Route>
+          </Routes>
           <Footer />
         </div>
         <ModalWithForm></ModalWithForm>
