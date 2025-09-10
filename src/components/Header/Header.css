@@ -7,7 +7,7 @@
   margin-bottom: 24px;
   display: flex;
   align-items: center;
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
 
@@ -19,7 +19,7 @@
   margin-left: 20px;
   padding: 0;
   border: none;
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   font-weight: bold;
   cursor: pointer;
 }

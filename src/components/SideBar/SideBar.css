@@ -6,8 +6,16 @@
 .sidebar {
   display: flex;
   align-items: center;
+  width: 259px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
 }
 
 .sidebar__username {
-  margin-left: 16px;
+  margin: 0 0 0 16px;
+  display: flex;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
 }
