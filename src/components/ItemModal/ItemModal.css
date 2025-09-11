@@ -17,8 +17,10 @@
 
 .modal__footer {
   padding: 20px 32px 32px;
-  font-family: "Cabinet Grotesk";
-  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
 }
 
 .modal__caption {
@@ -29,4 +31,20 @@
 .modal__weather {
   margin: 0;
   font-size: 20px;
+}
+
+.modal__delete-button {
+  padding: 0;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  color: #ff4d00;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+.modal__delete-button:hover {
+  opacity: 1;
 }

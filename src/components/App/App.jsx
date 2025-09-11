@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import { defaultClothingItems } from "../../utils/clothingItems.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
@@ -57,6 +58,16 @@ function App() {
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
+  };
+
+  const openConfirmationModal = (card) => {
+    setActiveModal("deleteConfirmation");
+    setSelectedCard(card);
+  };
+
+  const handleCardDelete = (card) => {
+    setClothingItems(clothingItems.filter((item) => item !== card));
+    onClose();
   };
 
   useEffect(() => {
@@ -122,6 +133,14 @@ function App() {
           card={selectedCard}
           onClose={onClose}
           onOverlayClose={handleOverlayClose}
+          onConfirm={openConfirmationModal}
+        />
+        <DeleteConfirmationModal
+          name="deleteConfirmation"
+          card={selectedCard}
+          activeModal={activeModal}
+          onCardDelete={handleCardDelete}
+          onClose={onClose}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
