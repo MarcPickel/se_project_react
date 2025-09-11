@@ -3,8 +3,12 @@
   font-family: "Cabinet Grotesk";
 }
 
-.clothes-section__cards-list {
-  margin: 0 0 85px;
+.clothes-section {
+  margin-top: 20px;
+}
+
+.clothes-section__items {
+  margin: 0 0 80px;
   padding: 0;
   list-style-type: none;
   display: flex;
@@ -14,10 +18,13 @@
 
 .clothes-section__text-group {
   display: flex;
+  align-items: center;
+  margin-bottom: 16px;
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
 }
 
 .clothes-section__text {
+  margin: 0;
   font-size: 20px;
   font-weight: 700;
   line-height: 100%;
@@ -26,6 +33,7 @@
 .clothes-section__add-button {
   margin: 0 0 0 20px;
   padding: 0;
+  height: 20px;
   font-size: 20px;
   font-weight: 700;
   line-height: 100%;

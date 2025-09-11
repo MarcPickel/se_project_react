@@ -37,3 +37,8 @@
 .header__avatar {
   margin-left: 24px;
 }
+
+.header__link {
+  text-decoration: none;
+  color: #000;
+}

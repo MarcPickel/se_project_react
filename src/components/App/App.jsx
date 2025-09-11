@@ -96,14 +96,14 @@ function App() {
               element={
                 <Main
                   weatherData={weatherData}
-                  handleCardClick={handleCardClick}
+                  onCardClick={handleCardClick}
                   clothingItems={clothingItems}
                 />
               }
             ></Route>
             <Route
               path="/se_project_react/profile"
-              element={<Profile></Profile>}
+              element={<Profile onCardClick={handleCardClick} />}
             ></Route>
           </Routes>
           <Footer />

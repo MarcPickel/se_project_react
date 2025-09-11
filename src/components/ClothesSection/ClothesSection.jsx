@@ -2,7 +2,7 @@ import "./ClothesSection.css";
 import { defaultClothingItems } from "../../utils/clothingItems.js";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 
-function ClothesSection() {
+function ClothesSection({ onCardClick }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__text-group">
@@ -12,14 +12,10 @@ function ClothesSection() {
         </button>
       </div>
       <div className="">
-        <ul className="clothes-section__cards-list">
+        <ul className="clothes-section__items">
           {defaultClothingItems.map((item) => {
             return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                //onCardClick={handleCardClick}
-              />
+              <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
             );
           })}
         </ul>
