@@ -24,6 +24,7 @@ function postItems({ name, imageUrl, weatherType }) {
 function removeItems(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    headers: { "Content-Type": "application/json" },
   })
     .then(checkResponse)
     .catch(console.error);

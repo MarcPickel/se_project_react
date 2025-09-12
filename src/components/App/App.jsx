@@ -60,19 +60,22 @@ function App() {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
-  const openConfirmationModal = (card) => {
+  const openConfirmationModal = () => {
+    let card = selectedCard;
     setActiveModal("deleteConfirmation");
-    setSelectedCard(card);
+    return card;
   };
 
   const handleCardDelete = (card) => {
-    const id = card.id ?? card._id;
-    removeItems(id).then(() => {
-      setClothingItems((prev) =>
-        prev.filter((item) => (item.id ?? item._id) !== id)
-      );
-      onClose();
-    });
+    let id = selectedCard.id;
+    console.log(id);
+    console.log(card);
+    //removeItems(id)
+    //  .then(() => {
+    //    setClothingItems((prev) => prev.filter((item) => item._id !== id));
+    //    onClose();
+    //   })
+    //  .catch(console.error);
   };
 
   useEffect(() => {
