@@ -66,16 +66,15 @@ function App() {
     return card;
   };
 
-  const handleCardDelete = (card) => {
-    let id = selectedCard.id;
-    console.log(id);
-    console.log(card);
-    //removeItems(id)
-    //  .then(() => {
-    //    setClothingItems((prev) => prev.filter((item) => item._id !== id));
-    //    onClose();
-    //   })
-    //  .catch(console.error);
+  const handleCardDelete = () => {
+    let id = selectedCard._id;
+    removeItems(id)
+      .then(() => {
+        setClothingItems((prev) => prev.filter((item) => item._id !== id));
+        onClose();
+        setSelectedCard("");
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
