@@ -10,9 +10,10 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-import { defaultClothingItems } from "../../utils/clothingItems.js";
+//import { defaultClothingItems } from "../../utils/clothingItems.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
+import { checkResponse, getItems } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const onAddClick = () => {
@@ -80,6 +81,12 @@ function App() {
   }, []);
 
   useEffect(() => {
+    getItems().then((data) => {
+      setClothingItems(data);
+    });
+  }, []);
+
+  useEffect(() => {
     if (!activeModal) return;
 
     const handleEscClose = (evt) => {
@@ -103,7 +110,7 @@ function App() {
           <Header onAddClick={onAddClick} weatherData={weatherData} />
           <Routes>
             <Route
-              path="/se_project_react"
+              path="/"
               element={
                 <Main
                   weatherData={weatherData}
@@ -113,8 +120,13 @@ function App() {
               }
             ></Route>
             <Route
-              path="/se_project_react/profile"
-              element={<Profile onCardClick={handleCardClick} />}
+              path="/profile"
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
             ></Route>
           </Routes>
           <Footer />
