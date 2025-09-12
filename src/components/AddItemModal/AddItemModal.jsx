@@ -7,6 +7,7 @@ function AddItemModal({
   onClose,
   onOverlayClose,
   buttonText,
+  postItems
 }) {
   const defaultValues = { name: "", imageUrl: "", weatherType: "" };
   const { values, handleChange } = useForm(defaultValues);
@@ -14,6 +15,7 @@ function AddItemModal({
   function handleSubmit(evt) {
     evt.preventDefault();
     onAddItem(values);
+    postItems(values);
   }
 
   return (

@@ -12,7 +12,7 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
-import { getItems } from "../../utils/api.js";
+import { getItems, postItems, removeItems } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 function App() {
@@ -66,8 +66,13 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
-    setClothingItems(clothingItems.filter((item) => item !== card));
-    onClose();
+    const id = card.id ?? card._id;
+    removeItems(id).then(() => {
+      setClothingItems((prev) =>
+        prev.filter((item) => (item.id ?? item._id) !== id)
+      );
+      onClose();
+    });
   };
 
   useEffect(() => {
@@ -139,6 +144,7 @@ function App() {
           onClose={onClose}
           onAddItem={onAddItem}
           onOverlayClose={handleOverlayClose}
+          postItems={postItems}
         ></AddItemModal>
         <ItemModal
           name="preview"
@@ -154,6 +160,7 @@ function App() {
           activeModal={activeModal}
           onCardDelete={handleCardDelete}
           onClose={onClose}
+          removeItems={removeItems}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

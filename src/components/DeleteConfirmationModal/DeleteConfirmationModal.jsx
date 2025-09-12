@@ -7,6 +7,7 @@ function DeleteConfirmationModal({
   onCardDelete,
   onClose,
 }) {
+
   return (
     <div
       className={`modal ${
