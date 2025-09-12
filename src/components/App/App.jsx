@@ -10,10 +10,9 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-//import { defaultClothingItems } from "../../utils/clothingItems.js";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
-import { checkResponse, getItems } from "../../utils/api.js";
+import { getItems } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 function App() {
@@ -39,7 +38,7 @@ function App() {
   const onAddItem = (inputValues) => {
     const newCardData = {
       name: inputValues.name,
-      link: inputValues.link,
+      imageUrl: inputValues.imageUrl,
       weather: inputValues.weatherType,
     };
     setClothingItems([...clothingItems, newCardData]);
@@ -81,9 +80,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getItems().then((data) => {
-      setClothingItems(data);
-    });
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   }, []);
 
   useEffect(() => {

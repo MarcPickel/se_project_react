@@ -15,22 +15,23 @@ function ItemModal({
         activeModal === "preview" && "modal_opened"
       } modal_type_${name}`}
     >
-      <div
-        className="modal__content modal__content_type_image"
-        onClick={onConfirm}
-      >
+      <div className="modal__content modal__content_type_image">
         <button
           onClick={onClose}
           className="modal__close"
           type="button"
         ></button>
-        <img className="modal__image" src={card.link} alt={card.name} />
+        <img className="modal__image" src={card.imageUrl} alt={card.name} />
         <div className="modal__footer">
           <div>
             <h2 className="modal__caption">{card.name}</h2>
             <p className="modal__weather">Weather: {card.weather}</p>
           </div>
-          <button type="submit" className="modal__delete-button">
+          <button
+            onClick={onConfirm}
+            type="button"
+            className="modal__delete-button"
+          >
             Delete item
           </button>
         </div>

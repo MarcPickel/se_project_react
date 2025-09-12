@@ -1,8 +1,7 @@
 import "./ClothesSection.css";
-import { defaultClothingItems } from "../../utils/clothingItems.js";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 
-function ClothesSection({ onCardClick }) {
+function ClothesSection({ onCardClick, clothingItems }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__text-group">
@@ -13,7 +12,7 @@ function ClothesSection({ onCardClick }) {
       </div>
       <div className="">
         <ul className="clothes-section__items">
-          {defaultClothingItems.map((item) => {
+          {clothingItems.map((item) => {
             return (
               <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
             );
