@@ -133,6 +133,7 @@ function App() {
                 <Profile
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  onAddClick={onAddClick}
                 />
               }
             ></Route>

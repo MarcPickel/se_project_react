@@ -24,6 +24,10 @@
   cursor: pointer;
 }
 
+.header__add-clothes-button:hover {
+  opacity: 0.6;
+}
+
 .header__user-container {
   margin-left: 20px;
   display: flex;

@@ -1,12 +1,16 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 
-function ClothesSection({ onCardClick, clothingItems }) {
+function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__text-group">
         <p className="clothes-section__text">Your items</p>
-        <button type="button" className="clothes-section__add-button">
+        <button
+          onClick={onAddClick}
+          type="button"
+          className="clothes-section__add-button"
+        >
           + Add new
         </button>
       </div>
