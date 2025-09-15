@@ -39,7 +39,7 @@ function App() {
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
-      weather: inputValues.weatherType,
+      weather: inputValues.weather,
     };
     setClothingItems([...clothingItems, newCardData]);
     onClose();

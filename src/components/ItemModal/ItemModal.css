@@ -43,6 +43,7 @@
   font-weight: 700;
   font-size: 20px;
   opacity: 0.6;
+  cursor: pointer;
 }
 
 .modal__delete-button:hover {

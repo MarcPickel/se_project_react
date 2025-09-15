@@ -1,6 +1,6 @@
 import "./Profile.css";
-import SideBar from "../SideBar/SideBar";
-import ClothesSection from "../ClothesSection/ClothesSection";
+import SideBar from "../SideBar/SideBar.jsx";
+import ClothesSection from "../ClothesSection/ClothesSection.jsx";
 
 function Profile({ onCardClick, clothingItems, onAddClick }) {
   return (

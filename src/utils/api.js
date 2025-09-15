@@ -11,11 +11,11 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse).catch(console.error);
 }
 
-function postItems({ name, imageUrl, weatherType }) {
+function postItems({ name, imageUrl, weather }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, imageUrl, weatherType }),
+    body: JSON.stringify({ name, imageUrl, weather }),
   })
     .then(checkResponse)
     .catch(console.error);

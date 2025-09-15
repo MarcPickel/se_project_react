@@ -1,4 +1,4 @@
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 
 function AddItemModal({
@@ -7,15 +7,19 @@ function AddItemModal({
   onClose,
   onOverlayClose,
   buttonText,
-  postItems
+  postItems,
 }) {
-  const defaultValues = { name: "", imageUrl: "", weatherType: "" };
+  const defaultValues = { name: "", imageUrl: "", weather: "" };
   const { values, handleChange } = useForm(defaultValues);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(values);
-    postItems(values);
+    postItems(values)
+      .then((newItem) => {
+        onAddItem(newItem);
+        onClose();
+      })
+      .catch(console.error);
   }
 
   return (
@@ -41,7 +45,7 @@ function AddItemModal({
           maxLength="30"
           value={values.name}
           onChange={handleChange}
-        ></input>
+        />
       </label>
       <label htmlFor="imageURL" className="modal__label">
         Image
@@ -54,14 +58,14 @@ function AddItemModal({
           required
           value={values.imageUrl}
           onChange={handleChange}
-        ></input>
+        />
       </label>
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
         <label htmlFor="hot" className="modal__label modal__label_type_radio">
           <input
             id="hot"
-            name="weatherType"
+            name="weather"
             type="radio"
             className="modal__radio-input"
             value="hot"
@@ -73,7 +77,7 @@ function AddItemModal({
         <label htmlFor="warm" className="modal__label modal__label_type_radio">
           <input
             id="warm"
-            name="weatherType"
+            name="weather"
             type="radio"
             className="modal__radio-input"
             value="warm"
@@ -85,7 +89,7 @@ function AddItemModal({
         <label htmlFor="cold" className="modal__label modal__label_type_radio">
           <input
             id="cold"
-            name="weatherType"
+            name="weather"
             type="radio"
             className="modal__radio-input"
             value="cold"

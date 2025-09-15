@@ -1,4 +1,4 @@
-import WeatherCard from "../WeatherCard/WeatherCard";
+import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { useContext } from "react";
