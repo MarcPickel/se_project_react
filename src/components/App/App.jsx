@@ -40,8 +40,9 @@ function App() {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
       weather: inputValues.weather,
+      id: inputValues._id,
     };
-    setClothingItems([...clothingItems, newCardData]);
+    setClothingItems([newCardData, ...clothingItems]);
     onClose();
   };
 
@@ -140,7 +141,7 @@ function App() {
           </Routes>
           <Footer />
         </div>
-        <ModalWithForm></ModalWithForm>
+        <ModalWithForm />
         <AddItemModal
           buttonText="Add garment"
           isOpen={activeModal === "add-garment"}

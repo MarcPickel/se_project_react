@@ -8,7 +8,7 @@ function checkResponse(res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse).catch(console.error);
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
 function postItems({ name, imageUrl, weather }) {
@@ -16,18 +16,14 @@ function postItems({ name, imageUrl, weather }) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, imageUrl, weather }),
-  })
-    .then(checkResponse)
-    .catch(console.error);
+  }).then(checkResponse);
 }
 
 function removeItems(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-  })
-    .then(checkResponse)
-    .catch(console.error);
+  }).then(checkResponse);
 }
 
 export { checkResponse, getItems, postItems, removeItems };
