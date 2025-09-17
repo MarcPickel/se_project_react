@@ -20,9 +20,9 @@
   visibility: visible;
 }
 
-.modal__content {
+.modal__form-content {
   position: relative;
-  padding: 28px 28px 36px;
+  padding: 28px 32px 32px;
   max-width: 496px;
   width: 100%;
   box-sizing: border-box;

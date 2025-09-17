@@ -5,7 +5,6 @@ import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
@@ -73,7 +72,7 @@ function App() {
       .then(() => {
         setClothingItems((prev) => prev.filter((item) => item._id !== id));
         onClose();
-        setSelectedCard("");
+        setSelectedCard({});
       })
       .catch(console.error);
   };
@@ -141,7 +140,6 @@ function App() {
           </Routes>
           <Footer />
         </div>
-        <ModalWithForm />
         <AddItemModal
           buttonText="Add garment"
           isOpen={activeModal === "add-garment"}
@@ -149,7 +147,7 @@ function App() {
           onAddItem={onAddItem}
           onOverlayClose={handleOverlayClose}
           postItems={postItems}
-        ></AddItemModal>
+        />
         <ItemModal
           name="preview"
           activeModal={activeModal}
@@ -160,7 +158,6 @@ function App() {
         />
         <DeleteConfirmationModal
           name="deleteConfirmation"
-          card={selectedCard}
           activeModal={activeModal}
           onCardDelete={handleCardDelete}
           onClose={onClose}

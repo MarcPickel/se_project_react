@@ -3,7 +3,6 @@ import "./DeleteConfirmationModal.css";
 function DeleteConfirmationModal({
   activeModal,
   name,
-  card,
   onCardDelete,
   onClose,
 }) {
