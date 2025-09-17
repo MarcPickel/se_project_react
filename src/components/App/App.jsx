@@ -37,10 +37,10 @@ function App() {
 
   const onAddItem = (inputValues) => {
     const newCardData = {
+      _id: inputValues._id,
       name: inputValues.name,
-      imageUrl: inputValues.imageUrl,
       weather: inputValues.weather,
-      id: inputValues._id,
+      imageUrl: inputValues.imageUrl,
     };
     setClothingItems([newCardData, ...clothingItems]);
     onClose();
