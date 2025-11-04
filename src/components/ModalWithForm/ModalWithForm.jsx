@@ -5,6 +5,7 @@ function ModalWithForm({
   name,
   title,
   buttonText,
+  authText,
   isOpen,
   onClose,
   onOverlayClose,
@@ -20,9 +21,14 @@ function ModalWithForm({
         <button onClick={onClose} className="modal__close" type="button" />
         <form className="modal__form" name={`${name}`} onSubmit={onSubmit}>
           {children}
-          <button className="modal__submit-button" type="submit">
-            {buttonText}
-          </button>
+          <div>
+            <button className="modal__submit-button" type="submit">
+              {buttonText}
+            </button>
+            <button className="modal__auth-button" type="button">
+              {authText}
+            </button>
+          </div>
         </form>
       </div>
     </div>

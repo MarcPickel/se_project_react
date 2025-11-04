@@ -1,7 +1,13 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 
-function RegisterModal({ isOpen, onClose, onOverlayClose, buttonText }) {
+function RegisterModal({
+  isOpen,
+  onClose,
+  onOverlayClose,
+  buttonText,
+  authText,
+}) {
   const defaultValues = { email: "", password: "", name: "", imageUrl: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
 
@@ -21,6 +27,7 @@ function RegisterModal({ isOpen, onClose, onOverlayClose, buttonText }) {
       name="sign-up"
       title="Sign Up"
       buttonText={buttonText}
+      authText={authText}
       onClose={onClose}
       onSubmit={handleSubmit}
       isOpen={isOpen}
@@ -53,32 +60,31 @@ function RegisterModal({ isOpen, onClose, onOverlayClose, buttonText }) {
         />
       </label>
       <label htmlFor="name" className="modal__label">
-        Name
+        Name*
         <input
           id="name"
           type="name"
           name="name"
           className="modal__input"
           placeholder="Name"
+          required
           value={values.name}
           onChange={handleChange}
         />
       </label>
       <label htmlFor="imageURL" className="modal__label">
-        Avatar URL
+        Avatar URL*
         <input
           id="imageURL"
           type="url"
           name="imageUrl"
           className="modal__input"
           placeholder="Avatar URL"
+          required
           value={values.imageUrl}
           onChange={handleChange}
         />
       </label>
-      <button className="modal__login-button" type="button">
-        or Log in
-      </button>
     </ModalWithForm>
   );
 }

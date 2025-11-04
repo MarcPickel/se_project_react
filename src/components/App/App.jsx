@@ -26,16 +26,37 @@ function App() {
     condition: "",
     isDay: false,
   });
-  const [activeModal, setActiveModal] = useState("sign-up");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
+
+  // Authority App Function Expressions
+  const onRegClick = () => {
+    setActiveModal("sign-up");
+  };
+
+  const onLogClick = () => {
+    setActiveModal("login");
+  };
+
+  const onOpenAuth = () => {
+    setIsButtonVisible(true);
+  };
+
+  const handleAuthButtonVis = () => {
+    if ((activeModal = "sign-up || login")) {
+      onOpenAuth();
+    }
+  };
 
   const onEmptyForm = () => {
     setIsButtonDisabled(true);
   };
 
+  // General App Function Expressions
   const onAddClick = () => {
     setActiveModal("add-garment");
   };
@@ -149,8 +170,16 @@ function App() {
           </Routes>
           <Footer />
         </div>
-        <RegisterModal isOpen={activeModal} buttonText={"Next"} />
-        <LoginModal />
+        <RegisterModal
+          isOpen={activeModal === "sign-up"}
+          buttonText={"Next"}
+          authText={"or Log in"}
+        />
+        <LoginModal
+          isOpen={activeModal === "login"}
+          buttonText={"Next"}
+          authText={"or Register"}
+        />
         <AddItemModal
           buttonText="Add garment"
           isOpen={activeModal === "add-garment"}

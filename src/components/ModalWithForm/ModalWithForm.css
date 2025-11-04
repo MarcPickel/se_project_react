@@ -139,7 +139,7 @@
 }
 
 .modal__submit-button {
-  width: 124px;
+  padding: 8px 16px;
   height: 36px;
   font-family: "Cabinet Grotesk";
   font-weight: bold;
@@ -151,4 +151,24 @@
 
 .modal__submit-button:hover {
   opacity: 0.6;
+}
+
+.modal__auth-button {
+  padding: 1px 12px;
+  height: 36px;
+  font-family: "Cabinet Grotesk";
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  color: #000;
+  opacity: 0.5;
+  visibility: hidden;
+}
+
+.modal__auth-button:hover {
+  opacity: 1;
+}
+
+.modal__auth-button_type_isVisible {
+  visibility: visible;
 }

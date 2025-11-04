@@ -1,7 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 
-function LoginModal({ isOpen, onClose, onOverlayClose, buttonText }) {
+function LoginModal({ isOpen, onClose, onOverlayClose, buttonText, authText }) {
   const defaultValues = { email: "", password: "", name: "", imageUrl: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
 
@@ -21,81 +21,38 @@ function LoginModal({ isOpen, onClose, onOverlayClose, buttonText }) {
       name="login"
       title="Login"
       buttonText={buttonText}
+      authText={authText}
       onClose={onClose}
       onSubmit={handleSubmit}
       isOpen={isOpen}
       onOverlayClose={onOverlayClose}
     >
-      <label htmlFor="name" className="modal__label">
-        Name
+      <label htmlFor="email" className="modal__label">
+        Email
         <input
-          id="name"
-          type="text"
-          name="name"
+          id="email"
+          type="email"
+          name="email"
           className="modal__input"
-          placeholder="Name"
+          placeholder="Email"
           required
-          minLength="1"
-          maxLength="30"
-          value={values.name}
+          value={values.email}
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="imageURL" className="modal__label">
-        Image
+      <label htmlFor="password" className="modal__label">
+        Password
         <input
-          id="imageURL"
-          type="url"
-          name="imageUrl"
+          id="password"
+          type="password"
+          name="password"
           className="modal__input"
-          placeholder="Image URL"
+          placeholder="Password"
           required
-          value={values.imageUrl}
+          value={values.password}
           onChange={handleChange}
         />
       </label>
-      <fieldset className="modal__radio-buttons">
-        <legend className="modal__legend">Select the weather type:</legend>
-        <label htmlFor="hot" className="modal__label modal__label_type_radio">
-          <input
-            id="hot"
-            name="weather"
-            type="radio"
-            className="modal__radio-input"
-            value="hot"
-            onChange={handleChange}
-            checked={values.weather === "hot"}
-          />{" "}
-          Hot
-          <span className="modal__radio-span_type_black"></span>
-        </label>
-        <label htmlFor="warm" className="modal__label modal__label_type_radio">
-          <input
-            id="warm"
-            name="weather"
-            type="radio"
-            className="modal__radio-input"
-            value="warm"
-            onChange={handleChange}
-            checked={values.weather === "warm"}
-          />{" "}
-          Warm
-          <span className="modal__radio-span_type_black"></span>
-        </label>
-        <label htmlFor="cold" className="modal__label modal__label_type_radio">
-          <input
-            id="cold"
-            name="weather"
-            type="radio"
-            className="modal__radio-input"
-            value="cold"
-            onChange={handleChange}
-            checked={values.weather === "cold"}
-          />{" "}
-          Cold
-          <span className="modal__radio-span_type_black"></span>
-        </label>
-      </fieldset>
     </ModalWithForm>
   );
 }
