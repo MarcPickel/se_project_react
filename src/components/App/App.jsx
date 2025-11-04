@@ -5,9 +5,13 @@ import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
+
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
+
 import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
@@ -22,10 +26,15 @@ function App() {
     condition: "",
     isDay: false,
   });
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("sign-up");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const onEmptyForm = () => {
+    setIsButtonDisabled(true);
+  };
 
   const onAddClick = () => {
     setActiveModal("add-garment");
@@ -140,6 +149,8 @@ function App() {
           </Routes>
           <Footer />
         </div>
+        <RegisterModal isOpen={activeModal} buttonText={"Next"} />
+        <LoginModal />
         <AddItemModal
           buttonText="Add garment"
           isOpen={activeModal === "add-garment"}
