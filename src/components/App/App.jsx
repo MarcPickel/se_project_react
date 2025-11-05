@@ -7,6 +7,9 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import * as auth from "../../utils/auth.js";
+import * as api from "../../utils/api.js";
+
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
@@ -26,6 +29,8 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+
+import { setToken, getToken } from "../../utils/token.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -47,7 +52,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Authority App Function Expressions
+  // Authority App Methods
   const onRegClick = () => {
     setActiveModal("sign-up");
   };
@@ -61,7 +66,7 @@ function App() {
   };
 
   const handleAuthButtonVis = () => {
-    if ((activeModal = "sign-up || login")) {
+    if (activeModal === "sign-up" || "login") {
       onOpenAuth();
     }
   };
@@ -121,6 +126,37 @@ function App() {
       .catch(console.error);
   };
 
+  // Auth Handlers
+  const handleSignup = ({ email, password, name, imageUrl }) => {
+    auth
+      .register(email, password, name, imageUrl)
+      .then(() => {
+        onClose();
+        handleSignin({ email, password });
+        // not navigate("/"), right?? Because, the User should already be on the Main Page
+      })
+      .catch(console.error);
+  };
+
+  const handleSignin = ({ email, password }) => {
+    if (!email || !password) {
+      return;
+    }
+
+    auth
+      .authorize(email, password)
+      .then((data) => {
+        if (data.jwt) {
+          setToken(data.jwt);
+          setUserData(data.user);
+          setIsLoggedIn(true);
+          onClose();
+        }
+      })
+      .catch(console.error);
+  };
+
+  // Effects Upon Main Entry
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => {
@@ -138,6 +174,7 @@ function App() {
       .catch(console.error);
   }, []);
 
+  // Escape Close Effect
   useEffect(() => {
     if (!activeModal) return;
 
