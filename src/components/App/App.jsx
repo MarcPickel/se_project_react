@@ -47,6 +47,7 @@ function App() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
 
+  const [userData, setUserData] = useState({ name: "", imageUrl: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
