@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";
@@ -35,6 +41,11 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Authority App Function Expressions
   const onRegClick = () => {
@@ -163,11 +174,13 @@ function App() {
             <Route
               path="/profile"
               element={
-                <Profile
-                  onCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                  onAddClick={onAddClick}
-                />
+                <ProtectedRoute>
+                  <Profile
+                    onCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    onAddClick={onAddClick}
+                  />
+                </ProtectedRoute>
               }
             ></Route>
           </Routes>
