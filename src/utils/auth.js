@@ -8,7 +8,7 @@ function checkResponse(res) {
 }
 
 const register = (email, password, name, imageUrl) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -19,7 +19,7 @@ const register = (email, password, name, imageUrl) => {
 };
 
 const authorize = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -30,7 +30,7 @@ const authorize = (email, password) => {
 };
 
 function getUserInfo(token) {
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -41,3 +41,5 @@ function getUserInfo(token) {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 }
+
+export { register, authorize, getUserInfo };

@@ -134,7 +134,6 @@ function App() {
       .then(() => {
         onClose();
         handleSignin({ email, password });
-        // not navigate("/"), right?? Because, the User should already be on the Main Page
       })
       .catch(console.error);
   };
