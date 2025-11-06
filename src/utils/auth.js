@@ -28,3 +28,16 @@ const authorize = (email, password) => {
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
 };
+
+function getUserInfo(token) {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+}

@@ -175,6 +175,23 @@ function App() {
       .catch(console.error);
   }, []);
 
+  // Check User's JWT
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    auth
+      .getUserInfo(jwt)
+      .then(({ name, imageUrl }) => {
+        setIsLoggedIn(true);
+        setUserData({ name, imageUrl });
+      })
+      .catch(console.error);
+  }, []);
+
   // Escape Close Effect
   useEffect(() => {
     if (!activeModal) return;
@@ -191,6 +208,7 @@ function App() {
     };
   }, [activeModal]);
 
+  // The WTWR App
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider

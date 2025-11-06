@@ -11,19 +11,6 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
-function getUserInfo(token) {
-  return fetch(`${BASE_URL}/users`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
-}
-
 function postItems({ name, imageUrl, weather }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
@@ -39,4 +26,4 @@ function removeItems(id) {
   }).then(checkResponse);
 }
 
-export { checkResponse, getItems, getUserInfo, postItems, removeItems };
+export { checkResponse, getItems, postItems, removeItems };
