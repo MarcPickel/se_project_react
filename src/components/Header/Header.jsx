@@ -20,19 +20,55 @@ function Header({ onAddClick, weatherData }) {
         {currentDate}, {weatherData.city}
       </p>
       <ToggleSwitch />
-      <button
-        onClick={onAddClick}
-        type="button"
-        className="header__add-clothes-button"
-      >
-        + Add clothes
-      </button>
-      <Link to="/profile" className="header__link">
-        <div className="header__user-container">
-          <p className="header__username">Terrence Tegegne</p>
-          <img className="header__avatar" src={avatar} alt="Terrence Tegegne" />
-        </div>
-      </Link>
+
+      {isLoggedIn ? (
+        <>
+          <button
+            onClick={onAddClick}
+            type="button"
+            className="header__add-clothes-button"
+          >
+            + Add clothes
+          </button>
+          <Link to="/profile" className="header__link">
+            <div className="header__user-container">
+              <p className="header__username">Terrence Tegegne</p>
+              <img
+                className="header__avatar"
+                src={avatar}
+                alt="Terrence Tegegne"
+              />
+            </div>
+          </Link>
+        </>
+      ) : (
+        <>
+          <div className="header__auth-container">
+            <button
+              onClick={
+                {
+                  /*Pass method to active signup modal*/
+                }
+              }
+              type="button"
+              className="header__signup-button"
+            >
+              Sign Up
+            </button>
+            <button
+              onClick={
+                {
+                  /*Pass method to active signin modal*/
+                }
+              }
+              type="button"
+              className="header__signin-button"
+            >
+              Log In
+            </button>
+          </div>
+        </>
+      )}
     </header>
   );
 }
