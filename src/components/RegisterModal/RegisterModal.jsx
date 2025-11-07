@@ -24,7 +24,7 @@ function RegisterModal({
 
   return (
     <ModalWithForm
-      name="sign-up"
+      name="signup"
       title="Sign Up"
       buttonText={buttonText}
       authText={authText}

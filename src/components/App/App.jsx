@@ -53,7 +53,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Authority App Methods
+  // Auth App Methods
   const onRegClick = () => {
     setActiveModal("sign-up");
   };
@@ -74,6 +74,14 @@ function App() {
 
   const onEmptyForm = () => {
     setIsButtonDisabled(true);
+  };
+
+  const onSignupClick = () => {
+    setActiveModal("signup");
+  };
+
+  const onSigninClick = () => {
+    setActiveModal("signin");
   };
 
   // General App Function Expressions
@@ -215,7 +223,16 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <div className="page__content">
-            <Header onAddClick={onAddClick} weatherData={weatherData} />
+            <Header
+              onAddClick={onAddClick}
+              weatherData={weatherData}
+              userData={userData}
+              isLoggedIn={isLoggedIn}
+              onSignupClick={onSignupClick}
+              onSigninClick={onSigninClick}
+              handleSignup={handleSignup}
+              handleSignin={handleSignin}
+            />
             <Routes>
               <Route
                 path="/"

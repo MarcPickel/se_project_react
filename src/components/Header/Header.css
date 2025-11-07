@@ -46,3 +46,28 @@
   text-decoration: none;
   color: #000;
 }
+
+.header__auth-container {
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  display: flex;
+  gap: 20px;
+}
+
+.header__signup-button {
+  margin-left: 20px;
+  padding: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  border: none;
+  background-color: transparent;
+}
+
+.header__signin-button {
+  padding: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  border: none;
+  background-color: transparent;
+}

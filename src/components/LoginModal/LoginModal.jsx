@@ -18,7 +18,7 @@ function LoginModal({ isOpen, onClose, onOverlayClose, buttonText, authText }) {
 
   return (
     <ModalWithForm
-      name="login"
+      name="signin"
       title="Login"
       buttonText={buttonText}
       authText={authText}
