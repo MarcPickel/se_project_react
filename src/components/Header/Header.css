@@ -61,6 +61,11 @@
   color: #000;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.header__signup-button:hover {
+  opacity: 0.6;
 }
 
 .header__signin-button {
@@ -70,4 +75,9 @@
   color: #000;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.header__signin-button:hover {
+  opacity: 0.6;
 }

@@ -54,12 +54,12 @@ function App() {
   const location = useLocation();
 
   // Auth App Methods
-  const onRegClick = () => {
-    setActiveModal("sign-up");
+  const onSignupClick = () => {
+    setActiveModal("signup");
   };
 
-  const onLogClick = () => {
-    setActiveModal("login");
+  const onSigninClick = () => {
+    setActiveModal("signin");
   };
 
   const onOpenAuth = () => {
@@ -67,21 +67,13 @@ function App() {
   };
 
   const handleAuthButtonVis = () => {
-    if (activeModal === "sign-up" || "login") {
+    if (activeModal === "signup" || "signin") {
       onOpenAuth();
     }
   };
 
   const onEmptyForm = () => {
     setIsButtonDisabled(true);
-  };
-
-  const onSignupClick = () => {
-    setActiveModal("signup");
-  };
-
-  const onSigninClick = () => {
-    setActiveModal("signin");
   };
 
   // General App Function Expressions
@@ -148,20 +140,18 @@ function App() {
 
   const handleSignin = ({ email, password }) => {
     if (!email || !password) {
-      return;
+      return Promise.reject("Email and password are required");
     }
 
-    auth
-      .authorize(email, password)
-      .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt);
-          setUserData(data.user);
-          setIsLoggedIn(true);
-          onClose();
-        }
-      })
-      .catch(console.error);
+    return auth.authorize(email, password).then((data) => {
+      if (data.jwt) {
+        setToken(data.jwt);
+        setUserData(data.user);
+        setIsLoggedIn(true);
+        onClose();
+      }
+      return data;
+    });
   };
 
   // Effects Upon Main Entry
@@ -230,8 +220,6 @@ function App() {
               isLoggedIn={isLoggedIn}
               onSignupClick={onSignupClick}
               onSigninClick={onSigninClick}
-              handleSignup={handleSignup}
-              handleSignin={handleSignin}
             />
             <Routes>
               <Route
@@ -260,14 +248,20 @@ function App() {
             <Footer />
           </div>
           <RegisterModal
-            isOpen={activeModal === "sign-up"}
+            isOpen={activeModal === "signup"}
             buttonText={"Next"}
             authText={"or Log in"}
+            onClose={onClose}
+            onOverlayClose={handleOverlayClose}
+            handleSignup={handleSignup}
           />
           <LoginModal
-            isOpen={activeModal === "login"}
+            isOpen={activeModal === "signin"}
             buttonText={"Next"}
             authText={"or Register"}
+            onClose={onClose}
+            onOverlayClose={handleOverlayClose}
+            handleSignin={handleSignin}
           />
           <AddItemModal
             buttonText="Add garment"

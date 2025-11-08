@@ -68,6 +68,11 @@
   border-bottom: solid 1px #000;
 }
 
+.modal__label-error {
+  color: #ff4d00;
+  border-bottom-color: #ff4d00;
+}
+
 .modal__input {
   display: block;
   padding: 0;
@@ -76,6 +81,11 @@
   font-family: "Cabinet Grotesk";
   font-weight: bold;
   border: none;
+}
+
+.modal__input-error {
+  color: #ff4d00;
+  border-color: #ff4d00;
 }
 
 .modal__radio-buttons {

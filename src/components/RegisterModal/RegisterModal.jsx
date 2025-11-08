@@ -7,19 +7,20 @@ function RegisterModal({
   onOverlayClose,
   buttonText,
   authText,
+  handleSignup,
 }) {
   const defaultValues = { email: "", password: "", name: "", imageUrl: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    postItems(values)
-      .then((newItem) => {
-        onAddItem(newItem);
+
+    handleSignup(values)
+      .then(() => {
         onClose();
         handleReset(evt);
       })
-      .catch(console.error);
+      .console.error();
   }
 
   return (

@@ -59,7 +59,7 @@ function Header({
               Sign Up
             </button>
             <button
-              onClick={onSignupClick}
+              onClick={onSigninClick}
               type="button"
               className="header__signin-button"
             >
