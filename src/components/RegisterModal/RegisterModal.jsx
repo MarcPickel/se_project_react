@@ -9,7 +9,7 @@ function RegisterModal({
   authText,
   handleSignup,
 }) {
-  const defaultValues = { email: "", password: "", name: "", imageUrl: "" };
+  const defaultValues = { email: "", password: "", name: "", avatar: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
 
   function handleSubmit(evt) {
@@ -20,7 +20,7 @@ function RegisterModal({
         onClose();
         handleReset(evt);
       })
-      .console.error();
+      .catch(console.error);
   }
 
   return (
@@ -73,16 +73,16 @@ function RegisterModal({
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="imageURL" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar URL*
         <input
-          id="imageURL"
+          id="avatar"
           type="url"
-          name="imageUrl"
+          name="avatar"
           className="modal__input"
           placeholder="Avatar URL"
           required
-          value={values.imageUrl}
+          value={values.avatar}
           onChange={handleChange}
         />
       </label>

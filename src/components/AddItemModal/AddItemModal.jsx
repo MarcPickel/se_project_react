@@ -48,10 +48,10 @@ function AddItemModal({
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="imageURL" className="modal__label">
+      <label htmlFor="imageUrl" className="modal__label">
         Image
         <input
-          id="imageURL"
+          id="imageUrl"
           type="url"
           name="imageUrl"
           className="modal__input"

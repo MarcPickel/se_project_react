@@ -14,14 +14,14 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
-function postItems({ name, imageUrl, weather }, token) {
+function postItems({ name, avatar, weather }, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, imageUrl, weather }),
+    body: JSON.stringify({ name, avatar, weather }),
   }).then(checkResponse);
 }
 

@@ -12,13 +12,13 @@ function Main({ weatherData, onCardClick, clothingItems }) {
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {weatherData.temp[currentTemperatureUnit]}&deg;
+          Today is {weatherData?.temp?.[currentTemperatureUnit] ?? ""}&deg;
           {currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
-          {clothingItems
+          {(Array.isArray(clothingItems) ? clothingItems : [])
             .filter((item) => {
-              return item.weather === weatherData.type;
+              return item?.weather === (weatherData?.type ?? "");
             })
             .map((item) => {
               return (

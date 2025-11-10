@@ -24,7 +24,6 @@ function LoginModal({
       .then(() => {
         setEmailError(false);
         setPasswordError(false);
-        onClose();
         handleReset(evt);
       })
       .catch((error) => {

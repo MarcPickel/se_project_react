@@ -47,7 +47,7 @@ function App() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
 
-  const [userData, setUserData] = useState({ name: "", imageUrl: "" });
+  const [userData, setUserData] = useState({ name: "", avatar: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ function App() {
   };
 
   const handleAuthButtonVis = () => {
-    if (activeModal === "signup" || "signin") {
+    if (activeModal === "signup" || activeModal === "signin") {
       onOpenAuth();
     }
   };
@@ -118,7 +118,8 @@ function App() {
 
   const handleCardDelete = () => {
     let id = selectedCard._id;
-    removeItems(id)
+    const token = getToken();
+    removeItems(id, token)
       .then(() => {
         setClothingItems((prev) => prev.filter((item) => item._id !== id));
         onClose();
@@ -128,14 +129,11 @@ function App() {
   };
 
   // Auth Handlers
-  const handleSignup = ({ email, password, name, imageUrl }) => {
-    auth
-      .register(email, password, name, imageUrl)
-      .then(() => {
-        onClose();
-        handleSignin({ email, password });
-      })
-      .catch(console.error);
+  const handleSignup = ({ email, password, name, avatar }) => {
+    return auth.register(email, password, name, avatar).then(() => {
+      onClose();
+      return handleSignin({ email, password });
+    });
   };
 
   const handleSignin = ({ email, password }) => {
@@ -167,7 +165,8 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        setClothingItems(data);
+        const itemsArray = Array.isArray(data) ? data : data?.items ?? [];
+        setClothingItems(itemsArray);
       })
       .catch(console.error);
   }, []);
@@ -182,9 +181,9 @@ function App() {
 
     auth
       .getUserInfo(jwt)
-      .then(({ name, imageUrl }) => {
+      .then(({ name, avatar }) => {
         setIsLoggedIn(true);
-        setUserData({ name, imageUrl });
+        setUserData({ name, avatar });
       })
       .catch(console.error);
   }, []);

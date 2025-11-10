@@ -8,8 +8,8 @@ function WeatherCard({ weatherData }) {
 
   const filteredOptions = weatherOptions.filter((option) => {
     return (
-      option.day === weatherData.isDay &&
-      option.condition === weatherData.condition
+      option.day === (weatherData?.isDay ?? false) &&
+      option.condition === (weatherData?.condition ?? "")
     );
   });
 
@@ -18,7 +18,8 @@ function WeatherCard({ weatherData }) {
   return (
     <section className="weather-card">
       <p className="weather-card__temperature">
-        {weatherData.temp[currentTemperatureUnit]}&deg;{currentTemperatureUnit}
+        {weatherData?.temp?.[currentTemperatureUnit] ?? ""}&deg;
+        {currentTemperatureUnit}
       </p>
       <img
         className="weather-card__condition"

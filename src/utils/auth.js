@@ -7,14 +7,14 @@ function checkResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
-const register = (email, password, name, imageUrl) => {
+const register = (email, password, name, avatar) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, name, imageUrl }),
+    body: JSON.stringify({ email, password, name, avatar }),
   }).then(checkResponse);
 };
 
