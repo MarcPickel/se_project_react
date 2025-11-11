@@ -3,7 +3,6 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
 import { Link } from "react-router-dom";
 
 import logo from "../../assets/wtwr-logo.svg";
-import avatar from "../../assets/avatar.png";
 
 function Header({
   onAddClick,
@@ -40,11 +39,17 @@ function Header({
           <Link to="/profile" className="header__link">
             <div className="header__user-container">
               <p className="header__username">{userData.name}</p>
-              <img
-                className="header__avatar"
-                src={userData.avatar}
-                alt={userData.name}
-              />
+              {userData.avatar ? (
+                <img
+                  className={"header__avatar"}
+                  src={userData.avatar}
+                  alt={userData.name}
+                />
+              ) : (
+                <div className="header__avatar-circle">
+                  <p className={"header__avatar-letter"}>{userData.name[0]}</p>
+                </div>
+              )}
             </div>
           </Link>
         </>

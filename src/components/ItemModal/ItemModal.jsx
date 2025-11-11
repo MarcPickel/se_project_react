@@ -1,4 +1,6 @@
 import "./ItemModal.css";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({
   activeModal,
@@ -8,6 +10,9 @@ function ItemModal({
   onOverlayClose,
   onConfirm,
 }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  const isOwn = card.owner === currentUser;
+
   return (
     <div
       onClick={onOverlayClose}
@@ -27,13 +32,15 @@ function ItemModal({
             <h2 className="modal__caption">{card.name}</h2>
             <p className="modal__weather">Weather: {card.weather}</p>
           </div>
-          <button
-            onClick={onConfirm}
-            type="button"
-            className="modal__delete-button"
-          >
-            Delete item
-          </button>
+          {isOwn && (
+            <button
+              onClick={onConfirm}
+              type="button"
+              className="modal__delete-button"
+            >
+              Delete item
+            </button>
+          )}
         </div>
       </div>
     </div>

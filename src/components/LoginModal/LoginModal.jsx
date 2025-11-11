@@ -25,6 +25,7 @@ function LoginModal({
         setEmailError(false);
         setPasswordError(false);
         handleReset(evt);
+        onClose();
       })
       .catch((error) => {
         setEmailError(true);

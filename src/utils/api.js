@@ -1,7 +1,4 @@
 const baseUrl = "http://localhost:3001";
-import { getToken } from "../utils/token";
-
-// const jwt = getToken(); This or "token?"
 
 function checkResponse(res) {
   if (res.ok) {
@@ -14,14 +11,14 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
-function postItems({ name, avatar, weather }, token) {
+function postItems({ name, imageUrl, weather }, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, avatar, weather }),
+    body: JSON.stringify({ name, imageUrl, weather }),
   }).then(checkResponse);
 }
 

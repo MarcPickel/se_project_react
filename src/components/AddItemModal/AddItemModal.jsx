@@ -1,5 +1,6 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
+import { getToken } from "../../utils/token.js";
 
 function AddItemModal({
   isOpen,
@@ -11,10 +12,11 @@ function AddItemModal({
 }) {
   const defaultValues = { name: "", imageUrl: "", weather: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
+  const token = getToken();
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    postItems(values)
+    postItems(values, token)
       .then((newItem) => {
         onAddItem(newItem);
         onClose();

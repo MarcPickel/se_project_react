@@ -15,7 +15,8 @@
   position: absolute;
   top: 15px;
   margin: 0;
-  width: 73px;
+  padding: 2px 12px;
+  /*width: 73px;*/
   height: 24px;
   background-color: #fff;
   color: rgba(0, 0, 0, 0.6);

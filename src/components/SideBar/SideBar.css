@@ -15,6 +15,27 @@
   height: 56px;
 }
 
+.sidebar__avatar-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: solid rgba(0, 0, 0, 0.5) 2px;
+  border-radius: 50%;
+}
+
+.sidebar__avatar-letter {
+  margin: 0;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  line-height: 32px;
+  font-weight: bold;
+  color: #fff;
+}
+
 .sidebar__username {
   display: flex;
   margin: 0;

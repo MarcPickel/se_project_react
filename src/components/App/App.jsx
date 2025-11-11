@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 
 import * as auth from "../../utils/auth.js";
-import * as api from "../../utils/api.js";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";
@@ -131,7 +130,6 @@ function App() {
   // Auth Handlers
   const handleSignup = ({ email, password, name, avatar }) => {
     return auth.register(email, password, name, avatar).then(() => {
-      onClose();
       return handleSignin({ email, password });
     });
   };
@@ -142,11 +140,18 @@ function App() {
     }
 
     return auth.authorize(email, password).then((data) => {
-      if (data.jwt) {
-        setToken(data.jwt);
+      console.log("Auth response structure:", {
+        hasTOKEN: "token" in data,
+        properties: Object.keys(data),
+        fullData: data,
+      });
+      if (data.token) {
+        setToken(data.token);
         setUserData(data.user);
         setIsLoggedIn(true);
         onClose();
+      } else {
+        console.log("JWT access check failed. Data:", data);
       }
       return data;
     });
@@ -165,7 +170,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        const itemsArray = Array.isArray(data) ? data : data?.items ?? [];
+        const itemsArray = Array.isArray(data?.data) ? data.data : [];
         setClothingItems(itemsArray);
       })
       .catch(console.error);
@@ -173,14 +178,14 @@ function App() {
 
   // Check User's JWT
   useEffect(() => {
-    const jwt = getToken();
+    const token = getToken();
 
-    if (!jwt) {
+    if (!token) {
       return;
     }
 
     auth
-      .getUserInfo(jwt)
+      .getUserInfo(token)
       .then(({ name, avatar }) => {
         setIsLoggedIn(true);
         setUserData({ name, avatar });
@@ -238,7 +243,9 @@ function App() {
                     <Profile
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
+                      userData={userData}
                       onAddClick={onAddClick}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }
@@ -248,6 +255,7 @@ function App() {
           </div>
           <RegisterModal
             isOpen={activeModal === "signup"}
+            isAuth={activeModal === "signup" || activeModal === "signin"}
             buttonText={"Next"}
             authText={"or Log in"}
             onClose={onClose}
@@ -256,6 +264,7 @@ function App() {
           />
           <LoginModal
             isOpen={activeModal === "signin"}
+            isAuth={activeModal === "signup" || activeModal === "signin"}
             buttonText={"Next"}
             authText={"or Register"}
             onClose={onClose}

@@ -42,6 +42,27 @@
   margin-left: 24px;
 }
 
+.header__avatar-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  margin-left: 24px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: solid rgba(0, 0, 0, 0.5) 2px;
+  border-radius: 50%;
+}
+
+.header__avatar-letter {
+  margin: 0;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
 .header__link {
   text-decoration: none;
   color: #000;

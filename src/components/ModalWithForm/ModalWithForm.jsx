@@ -7,6 +7,7 @@ function ModalWithForm({
   buttonText,
   authText,
   isOpen,
+  isAuth,
   onClose,
   onOverlayClose,
   onSubmit,
