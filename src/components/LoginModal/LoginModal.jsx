@@ -7,8 +7,9 @@ function LoginModal({
   onClose,
   onOverlayClose,
   buttonText,
-  authText,
+  regText,
   handleSignin,
+  onRegClick,
 }) {
   const defaultValues = { email: "", password: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
@@ -52,8 +53,9 @@ function LoginModal({
       name="signin"
       title="Login"
       buttonText={buttonText}
-      authText={authText}
+      regText={regText}
       onClose={onClose}
+      onRegClick={onRegClick}
       onSubmit={handleSubmit}
       isOpen={isOpen}
       onOverlayClose={onOverlayClose}

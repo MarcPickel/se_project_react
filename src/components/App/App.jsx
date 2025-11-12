@@ -61,18 +61,14 @@ function App() {
     setActiveModal("signin");
   };
 
-  const onOpenAuth = () => {
-    setIsButtonVisible(true);
+  const onRegClick = () => {
+    onClose();
+    setActiveModal("signup");
   };
 
-  const handleAuthButtonVis = () => {
-    if (activeModal === "signup" || activeModal === "signin") {
-      onOpenAuth();
-    }
-  };
-
-  const onEmptyForm = () => {
-    setIsButtonDisabled(true);
+  const onLogClick = () => {
+    onClose();
+    setActiveModal("signin");
   };
 
   // General App Function Expressions
@@ -255,19 +251,19 @@ function App() {
           </div>
           <RegisterModal
             isOpen={activeModal === "signup"}
-            isAuth={activeModal === "signup" || activeModal === "signin"}
             buttonText={"Next"}
-            authText={"or Log in"}
+            logText={"or Log in"}
             onClose={onClose}
+            onLogClick={onLogClick}
             onOverlayClose={handleOverlayClose}
             handleSignup={handleSignup}
           />
           <LoginModal
             isOpen={activeModal === "signin"}
-            isAuth={activeModal === "signup" || activeModal === "signin"}
             buttonText={"Next"}
-            authText={"or Register"}
+            regText={"or Register"}
             onClose={onClose}
+            onRegClick={onRegClick}
             onOverlayClose={handleOverlayClose}
             handleSignin={handleSignin}
           />

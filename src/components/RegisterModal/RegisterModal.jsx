@@ -6,8 +6,9 @@ function RegisterModal({
   onClose,
   onOverlayClose,
   buttonText,
-  authText,
+  logText,
   handleSignup,
+  onLogClick,
 }) {
   const defaultValues = { email: "", password: "", name: "", avatar: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
@@ -28,8 +29,9 @@ function RegisterModal({
       name="signup"
       title="Sign Up"
       buttonText={buttonText}
-      authText={authText}
+      logText={logText}
       onClose={onClose}
+      onLogClick={onLogClick}
       onSubmit={handleSubmit}
       isOpen={isOpen}
       onOverlayClose={onOverlayClose}

@@ -179,6 +179,6 @@
   opacity: 1;
 }
 
-.modal__auth-button_type_isVisible {
+.modal__auth-button_isVisible {
   visibility: visible;
 }
