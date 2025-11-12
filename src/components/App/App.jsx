@@ -15,11 +15,12 @@ import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Profile from "../Profile/Profile.jsx";
 
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
-import RegisterModal from "../RegisterModal/RegisterModal.jsx";
-import LoginModal from "../LoginModal/LoginModal.jsx";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
@@ -43,8 +44,6 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [isButtonVisible, setIsButtonVisible] = useState(false);
 
   const [userData, setUserData] = useState({ name: "", avatar: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -79,6 +78,12 @@ function App() {
     setActiveModal("");
   };
 
+  const handleOverlayClose = (evt) => {
+    if (evt.target.classList.contains("modal")) {
+      onClose();
+    }
+  };
+
   const onAddItem = (inputValues) => {
     const newCardData = {
       _id: inputValues._id,
@@ -88,12 +93,6 @@ function App() {
     };
     setClothingItems([newCardData, ...clothingItems]);
     onClose();
-  };
-
-  const handleOverlayClose = (evt) => {
-    if (evt.target.classList.contains("modal")) {
-      onClose();
-    }
   };
 
   const handleCardClick = (card) => {
@@ -136,22 +135,17 @@ function App() {
     }
 
     return auth.authorize(email, password).then((data) => {
-      console.log("Auth response structure:", {
-        hasTOKEN: "token" in data,
-        properties: Object.keys(data),
-        fullData: data,
-      });
       if (data.token) {
         setToken(data.token);
         setUserData(data.user);
         setIsLoggedIn(true);
         onClose();
-      } else {
-        console.log("JWT access check failed. Data:", data);
       }
       return data;
     });
   };
+
+  // Edit Profile Handlers
 
   // Effects Upon Main Entry
   useEffect(() => {
@@ -266,6 +260,12 @@ function App() {
             onRegClick={onRegClick}
             onOverlayClose={handleOverlayClose}
             handleSignin={handleSignin}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "edit-profile"}
+            buttonText={"Save changes"}
+            onClose={onClose}
+            onOverlayClose={handleOverlayClose}
           />
           <AddItemModal
             buttonText="Add garment"

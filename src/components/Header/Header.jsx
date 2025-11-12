@@ -38,16 +38,16 @@ function Header({
           </button>
           <Link to="/profile" className="header__link">
             <div className="header__user-container">
-              <p className="header__username">{userData.name}</p>
+              <p className="header__username">{userData?.name}</p>
               {userData?.avatar ? (
                 <img
                   className={"header__avatar"}
-                  src={userData.avatar}
-                  alt={userData.name}
+                  src={userData?.avatar}
+                  alt={userData?.name}
                 />
               ) : (
                 <div className="header__avatar-circle">
-                  <p className={"header__avatar-letter"}>{userData.name[0]}</p>
+                  <p className={"header__avatar-letter"}>{userData?.name[0]}</p>
                 </div>
               )}
             </div>
