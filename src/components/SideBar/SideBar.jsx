@@ -1,6 +1,6 @@
 import "./SideBar.css";
 
-function SideBar({ userData }) {
+function SideBar({ userData, handleEditProfileClick }) {
   return (
     <div className="sidebar">
       <div className="sidebar__user-container">
@@ -17,10 +17,14 @@ function SideBar({ userData }) {
         )}
         <p className="sidebar__username">{userData.name}</p>
       </div>
-      <button className="sidebar__text" type="button">
+      <button
+        className="sidebar__edit-button"
+        type="button"
+        onClick={handleEditProfileClick}
+      >
         Change profile data
       </button>
-      <button className="sidebar__text" type="button">
+      <button className="sidebar__logout-button" type="button">
         Log out
       </button>
     </div>

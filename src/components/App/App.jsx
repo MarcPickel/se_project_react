@@ -7,8 +7,6 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import * as auth from "../../utils/auth.js";
-
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
@@ -24,7 +22,13 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, apiKey } from "../../utils/constants.js";
-import { getItems, postItems, removeItems } from "../../utils/api.js";
+import {
+  getItems,
+  postItems,
+  removeItems,
+  editProfile,
+} from "../../utils/api.js";
+import * as auth from "../../utils/auth.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
@@ -146,6 +150,18 @@ function App() {
   };
 
   // Edit Profile Handlers
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
+  const onEditProfile = (inputValues) => {
+    const newUserData = {
+      name: inputValues.name,
+      avatar: inputValues.avatar,
+    };
+    setUserData(newUserData);
+    onClose();
+  };
 
   // Effects Upon Main Entry
   useEffect(() => {
@@ -236,6 +252,7 @@ function App() {
                       userData={userData}
                       onAddClick={onAddClick}
                       isLoggedIn={isLoggedIn}
+                      handleEditProfileClick={handleEditProfileClick}
                     />
                   </ProtectedRoute>
                 }
@@ -266,6 +283,8 @@ function App() {
             buttonText={"Save changes"}
             onClose={onClose}
             onOverlayClose={handleOverlayClose}
+            editProfile={editProfile}
+            onEditProfile={onEditProfile}
           />
           <AddItemModal
             buttonText="Add garment"

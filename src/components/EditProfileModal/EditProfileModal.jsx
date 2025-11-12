@@ -1,15 +1,29 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
+import { getToken } from "../../utils/token.js";
 
-function EditProfileModal({ isOpen, onClose, onOverlayClose, buttonText }) {
-  const defaultValues = { email: "", password: "" };
+function EditProfileModal({
+  isOpen,
+  onClose,
+  onOverlayClose,
+  buttonText,
+  editProfile,
+  onEditProfile,
+}) {
+  // default values should match editable fields (name, avatar)
+  const defaultValues = { name: "", avatar: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
+  const token = getToken();
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    //setName(); //setAvatar(); as one handler: onEditProfile(data);
-    onClose();
-    handleReset(evt);
+    editProfile(values, token)
+      .then((userData) => {
+        onEditProfile(userData);
+        onClose();
+        handleReset(evt);
+      })
+      .catch(console.error);
   }
 
   return (
@@ -26,7 +40,7 @@ function EditProfileModal({ isOpen, onClose, onOverlayClose, buttonText }) {
         Name*
         <input
           id="name"
-          type="name"
+          type="text"
           name="name"
           className="modal__input"
           placeholder="Name"
@@ -41,10 +55,11 @@ function EditProfileModal({ isOpen, onClose, onOverlayClose, buttonText }) {
         Avatar
         <input
           id="avatar"
-          type="avatar"
+          type="url"
           name="avatar"
           className="modal__input"
-          placeholder="Avatar"
+          placeholder="Avatar URL"
+          required
           value={values.avatar}
           onChange={handleChange}
         />

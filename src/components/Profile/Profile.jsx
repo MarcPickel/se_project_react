@@ -8,11 +8,16 @@ function Profile({
   onAddClick,
   userData,
   isLoggedIn,
+  handleEditProfileClick,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar userData={userData} isLoggedIn={isLoggedIn} />
+        <SideBar
+          userData={userData}
+          isLoggedIn={isLoggedIn}
+          handleEditProfileClick={handleEditProfileClick}
+        />
       </section>
       <section className="profile__clothes-section">
         <ClothesSection

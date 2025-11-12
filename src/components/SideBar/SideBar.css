@@ -51,14 +51,32 @@
   text-wrap: nowrap;
 }
 
-.sidebar__text {
+.sidebar__edit-button {
   margin: 0 0 8px;
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 20px;
   text-wrap: nowrap;
+  background: none;
+  border: none;
 }
 
-.sidebar__text:last-of-type {
+.sidebar__edit-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.sidebar__logout-button {
   margin: 0;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  text-wrap: nowrap;
+  background: none;
+  border: none;
+}
+
+.sidebar__logout-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
