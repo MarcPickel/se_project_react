@@ -9,6 +9,7 @@ function Profile({
   userData,
   isLoggedIn,
   handleEditProfileClick,
+  onChangeLike,
 }) {
   return (
     <div className="profile">
@@ -24,6 +25,7 @@ function Profile({
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           onAddClick={onAddClick}
+          onChangeLike={onChangeLike}
         />
       </section>
     </div>

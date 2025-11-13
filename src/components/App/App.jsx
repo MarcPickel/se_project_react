@@ -54,7 +54,7 @@ function App() {
   const [userData, setUserData] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [isActive, setIsActive] = useState(false);
+  // Move isLiked useState up to here when done
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -169,21 +169,30 @@ function App() {
   };
 
   // Card Like Handlers
-  const handleCardLike = ({ id, isLiked }) => {
+  const [isLiked, setIsLiked] = useState("");
+
+  const handleChangeLike = () => {
+    isLiked === "" ? setIsLiked("card__like-button_active") : setIsLiked("");
+  };
+
+  // Card Like Handler for API
+  const handleCardLike = ({ _id, isLiked }) => {
     const token = getToken();
+    console.log({ _id });
+    console.log({ isLiked });
 
     !isLiked
-      ? addCardLike(id, token)
+      ? addCardLike(_id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === _id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err))
-      : removeCardLike(id, token)
+      : removeCardLike(_id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
+              cards.map((item) => (item._id === _id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err));
@@ -266,6 +275,7 @@ function App() {
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
+                    onChangeLike={handleChangeLike}
                   />
                 }
               ></Route>
@@ -280,6 +290,7 @@ function App() {
                       onAddClick={onAddClick}
                       isLoggedIn={isLoggedIn}
                       handleEditProfileClick={handleEditProfileClick}
+                      onChangeLike={handleChangeLike}
                     />
                   </ProtectedRoute>
                 }

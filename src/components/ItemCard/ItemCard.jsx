@@ -1,16 +1,13 @@
 import "./ItemCard.css";
-import { useState } from "react";
 
-function ItemCard({ item, onCardClick, onCardLike, onLike }) {
-  const [isActive, setIsActive] = useState(false);
-
+function ItemCard({ item, onCardClick, onCardLike, onChangeLike }) {
   const handleCardClick = () => {
     onCardClick(item);
   };
 
   const handleLike = () => {
     onCardLike(item);
-    setIsActive(true);
+    onChangeLike();
   };
 
   return (
