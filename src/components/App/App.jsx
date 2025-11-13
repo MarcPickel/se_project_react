@@ -26,6 +26,8 @@ import {
   getItems,
   postItems,
   removeItems,
+  addCardLike,
+  removeCardLike,
   editProfile,
 } from "../../utils/api.js";
 import * as auth from "../../utils/auth.js";
@@ -49,8 +51,10 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
-  const [userData, setUserData] = useState({ name: "", avatar: "" });
+  const [userData, setUserData] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [isActive, setIsActive] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -156,11 +160,33 @@ function App() {
 
   const onEditProfile = (inputValues) => {
     const newUserData = {
+      ...userData,
       name: inputValues.name,
       avatar: inputValues.avatar,
     };
     setUserData(newUserData);
     onClose();
+  };
+
+  // Card Like Handlers
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = getToken();
+
+    !isLiked
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   // Effects Upon Main Entry
@@ -192,9 +218,9 @@ function App() {
 
     auth
       .getUserInfo(token)
-      .then(({ name, avatar }) => {
+      .then((user) => {
         setIsLoggedIn(true);
-        setUserData({ name, avatar });
+        setUserData(user);
       })
       .catch(console.error);
   }, []);
@@ -217,7 +243,7 @@ function App() {
 
   // The WTWR App
   return (
-    <CurrentUserContext.Provider value={isLoggedIn}>
+    <CurrentUserContext.Provider value={userData}>
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -239,6 +265,7 @@ function App() {
                     weatherData={weatherData}
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               ></Route>

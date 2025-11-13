@@ -10,8 +10,8 @@ function ItemModal({
   onOverlayClose,
   onConfirm,
 }) {
-  const { currentUser } = useContext(CurrentUserContext);
-  const isOwn = card.owner === currentUser;
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = currentUser && card.owner === currentUser._id;
 
   return (
     <div

@@ -4,8 +4,8 @@ import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
-  const { currentUser } = useContext(CurrentUserContext);
-  const isOwn = clothingItems.owner === currentUser;
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = currentUser && clothingItems.some(item => item.owner === currentUser._id);
 
   return (
     <div className="clothes-section">
