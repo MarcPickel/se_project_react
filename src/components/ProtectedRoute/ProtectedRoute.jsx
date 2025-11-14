@@ -1,25 +1,28 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { getToken } from "../../utils/token";
+import { getToken, removeToken } from "../../utils/token";
 
 function ProtectedRoute({ children, anonymous = false }) {
   const currentUser = useContext(CurrentUserContext);
-  const isLoggedIn = Boolean(currentUser);
+  const isLoggedIn = currentUser?.isLoggedIn ?? false;
   const token = getToken();
 
   const location = useLocation();
   const from = location.state?.from || "/";
 
-  if (token && !currentUser) {
-    return null;
+  // If there's a token but user data hasn't loaded yet, wait (show nothing)
+  // This prevents redirecting while the auth check is in progress
+  if (token && !isLoggedIn && !currentUser?.userData) {
+    removeToken();
+    return <Navigate to="/" state={{ from: location }} />;
   }
 
   if (anonymous && isLoggedIn) {
     return <Navigate to={from} />;
   }
 
-  if (!anonymous && !isLoggedIn) {
+  if (!anonymous && (!isLoggedIn || !token)) {
     return <Navigate to="/" state={{ from: location }} />;
   }
 

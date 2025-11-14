@@ -4,38 +4,40 @@ import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
+  // Check if the item was liked by the current user
+  // The likes array should be an array of ids
   const isLiked =
-    currentUser &&
-    item.likes &&
-    item.likes.some((id) => id === currentUser._id);
+    item.likes?.some((id) => id === currentUser.userData?._id) ?? false;
   const itemLikeButtonClassName = "card__like-button_active";
 
-  const handleCardClick = () => {
-    onCardClick(item);
+  const handleLike = (evt) => {
+    evt.preventDefault();
+    onCardLike({ _id: item._id, isLiked });
   };
 
-  const handleLike = (evt) => {
-    evt.stopPropagation();
-    onCardLike(item);
+  const handleCardImageClick = () => {
+    onCardClick(item);
   };
 
   return (
     <li className="card">
       <div className="card__info">
         <h2 className="card__text">{item.name}</h2>
-        <button
-          className={`card__like-button ${
-            isLiked ? itemLikeButtonClassName : ""
-          }`}
-          type="button"
-          onClick={handleLike}
-        ></button>
+        {currentUser.isLoggedIn && (
+          <button
+            className={`card__like-button ${
+              isLiked ? itemLikeButtonClassName : ""
+            }`}
+            type="button"
+            onClick={handleLike}
+          ></button>
+        )}
       </div>
       <img
         className="card__image"
         src={item.imageUrl}
         alt={item.name}
-        onClick={handleCardClick}
+        onClick={handleCardImageClick}
       />
     </li>
   );

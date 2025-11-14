@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Header from "../Header/Header.jsx";
@@ -33,7 +30,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 
-import { setToken, getToken } from "../../utils/token.js";
+import { setToken, getToken, removeToken } from "../../utils/token.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -60,12 +57,12 @@ function App() {
     setActiveModal("signin");
   };
 
-  const onRegClick = () => {
+  const onRegisterClick = () => {
     onClose();
     setActiveModal("signup");
   };
 
-  const onLogClick = () => {
+  const onLoginClick = () => {
     onClose();
     setActiveModal("signin");
   };
@@ -139,7 +136,6 @@ function App() {
         setIsLoggedIn(true);
         onClose();
       }
-      return data;
     });
   };
 
@@ -159,48 +155,26 @@ function App() {
   };
 
   // Card Like Handler for API
-  const handleCardLike = (item) => {
+  const handleCardLike = ({ _id, isLiked }) => {
     const token = getToken();
-    const isLiked =
-      userData && item.likes && item.likes.some((id) => id === userData._id);
-
-    const updateCard = (res) => {
-      const updatedCard = res?.data || res;
-      if (updatedCard && updatedCard._id) {
-        setClothingItems((cards) =>
-          cards.map((card) => {
-            if (card._id === item._id) {
-              return { ...card, ...updatedCard };
-            }
-            return card;
-          })
-        );
-      } else {
-        setClothingItems((cards) =>
-          cards.map((card) => {
-            if (card._id === item._id) {
-              const newLikes = isLiked
-                ? (card.likes || []).filter((id) => id !== userData._id)
-                : [...(card.likes || []), userData._id];
-              return { ...card, likes: newLikes };
-            }
-            return card;
-          })
-        );
-      }
-    };
 
     !isLiked
-      ? addCardLike(item._id, token)
-          .then(updateCard)
-          .catch((err) => {
-            console.log("Error adding like:", err);
+      ? addCardLike(_id, token)
+          .then((updatedCard) => {
+            const card = updatedCard?.data || updatedCard;
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? card : item))
+            );
           })
-      : removeCardLike(item._id, token)
-          .then(updateCard)
-          .catch((err) => {
-            console.log("Error removing like:", err);
-          });
+          .catch((err) => console.log(err))
+      : removeCardLike(_id, token)
+          .then((updatedCard) => {
+            const card = updatedCard?.data || updatedCard;
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? card : item))
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   // Effects Upon Main Entry
@@ -236,7 +210,12 @@ function App() {
         setIsLoggedIn(true);
         setUserData(user);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Auth check failed:", err);
+        removeToken();
+        setIsLoggedIn(false);
+        setUserData(null);
+      });
   }, []);
 
   // Escape Close Effect
@@ -257,7 +236,9 @@ function App() {
 
   // The WTWR App
   return (
-    <CurrentUserContext.Provider value={userData}>
+    <CurrentUserContext.Provider
+      value={{ userData, isLoggedIn, setIsLoggedIn }}
+    >
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -266,8 +247,6 @@ function App() {
             <Header
               onAddClick={onAddClick}
               weatherData={weatherData}
-              userData={userData}
-              isLoggedIn={isLoggedIn}
               onSignupClick={onSignupClick}
               onSigninClick={onSigninClick}
             />
@@ -290,10 +269,7 @@ function App() {
                     <Profile
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
-                      userData={userData}
                       onAddClick={onAddClick}
-                      isLoggedIn={isLoggedIn}
-                      setIsLoggedIn={setIsLoggedIn}
                       handleEditProfileClick={handleEditProfileClick}
                       onCardLike={handleCardLike}
                     />
@@ -308,7 +284,7 @@ function App() {
             buttonText={"Next"}
             logText={"or Log in"}
             onClose={onClose}
-            onLogClick={onLogClick}
+            onLoginClick={onLoginClick}
             onOverlayClose={handleOverlayClose}
             handleSignup={handleSignup}
           />
@@ -317,7 +293,7 @@ function App() {
             buttonText={"Next"}
             regText={"or Register"}
             onClose={onClose}
-            onRegClick={onRegClick}
+            onRegisterClick={onRegisterClick}
             onOverlayClose={handleOverlayClose}
             handleSignin={handleSignin}
           />

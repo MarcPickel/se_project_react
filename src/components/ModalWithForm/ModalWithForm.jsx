@@ -11,11 +11,11 @@ function ModalWithForm({
   onClose,
   onOverlayClose,
   onSubmit,
-  onLogClick,
-  onRegClick,
+  onLoginClick,
+  onRegisterClick,
 }) {
-  const isReg = name === "signup";
-  const isLog = name === "signin";
+  const isRegistered = name === "signup";
+  const isLoggedIn = name === "signin";
 
   return (
     <div
@@ -31,9 +31,9 @@ function ModalWithForm({
             <button className="modal__submit-button" type="submit">
               {buttonText}
             </button>
-            {isReg && isOpen ? (
+            {isRegistered && isOpen ? (
               <button
-                onClick={onLogClick}
+                onClick={onLoginClick}
                 className="modal__auth-button modal__auth-button_isVisible"
                 type="button"
               >
@@ -42,9 +42,9 @@ function ModalWithForm({
             ) : (
               <></>
             )}
-            {isLog && isOpen ? (
+            {isLoggedIn && isOpen ? (
               <button
-                onClick={onRegClick}
+                onClick={onRegisterClick}
                 className="modal__auth-button modal__auth-button_isVisible"
                 type="button"
               >

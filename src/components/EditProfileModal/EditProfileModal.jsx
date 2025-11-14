@@ -1,6 +1,8 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 import { getToken } from "../../utils/token.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
+import { useContext, useEffect } from "react";
 
 function EditProfileModal({
   isOpen,
@@ -12,8 +14,19 @@ function EditProfileModal({
 }) {
   // default values should match editable fields (name, avatar)
   const defaultValues = { name: "", avatar: "" };
-  const { values, handleChange, handleReset } = useForm(defaultValues);
+  const userData = useContext(CurrentUserContext);
+
+  const { values, setValues, handleChange, handleReset } =
+    useForm(defaultValues);
   const token = getToken();
+
+  useEffect(() => {
+    if (isOpen && userData)
+      setValues({
+        name: userData.name || "",
+        avatar: userData.avatar || "",
+      });
+  }, [isOpen, userData]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -39,7 +52,7 @@ function EditProfileModal({
       <label htmlFor="name" className="modal__label">
         Name*
         <input
-          id="name"
+          id="name-edit"
           type="text"
           name="name"
           className="modal__input"
@@ -54,7 +67,7 @@ function EditProfileModal({
       <label htmlFor="avatar" className="modal__label">
         Avatar
         <input
-          id="avatar"
+          id="avatar-edit"
           type="url"
           name="avatar"
           className="modal__input"

@@ -38,7 +38,7 @@ function AddItemModal({
       <label htmlFor="name" className="modal__label">
         Name
         <input
-          id="name"
+          id="name-add"
           type="text"
           name="name"
           className="modal__input"

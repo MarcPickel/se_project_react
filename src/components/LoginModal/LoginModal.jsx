@@ -9,15 +9,17 @@ function LoginModal({
   buttonText,
   regText,
   handleSignin,
-  onRegClick,
+  onRegisterClick,
 }) {
   const defaultValues = { email: "", password: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
+
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
   function handleSubmit(evt) {
     evt.preventDefault();
+
     setEmailError(false);
     setPasswordError(false);
 
@@ -55,7 +57,7 @@ function LoginModal({
       buttonText={buttonText}
       regText={regText}
       onClose={onClose}
-      onRegClick={onRegClick}
+      onRegisterClick={onRegisterClick}
       onSubmit={handleSubmit}
       isOpen={isOpen}
       onOverlayClose={onOverlayClose}
@@ -66,7 +68,7 @@ function LoginModal({
       >
         {emailError ? "Incorrect email" : "Email"}
         <input
-          id="email"
+          id="email-login"
           type="email"
           name="email"
           className={`modal__input ${emailError ? "modal__input-error" : ""}`}
@@ -82,7 +84,7 @@ function LoginModal({
       >
         {passwordError ? "Incorrect password" : "Password"}
         <input
-          id="password"
+          id="password-login"
           type="password"
           name="password"
           className={`modal__input ${

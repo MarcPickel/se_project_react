@@ -1,17 +1,16 @@
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 import logo from "../../assets/wtwr-logo.svg";
 
-function Header({
-  onAddClick,
-  weatherData,
-  userData,
-  isLoggedIn,
-  onSignupClick,
-  onSigninClick,
-}) {
+function Header({ onAddClick, weatherData, onSignupClick, onSigninClick }) {
+  const { userData, isLoggedIn } = useContext(CurrentUserContext);
+  //const isLoggedIn = currentUser.isLoggedIn;
+  //const userData = currentUser.userData;
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",

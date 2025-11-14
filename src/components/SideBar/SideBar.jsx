@@ -1,9 +1,11 @@
 import "./SideBar.css";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeToken } from "../../utils/token";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
-function SideBar({ userData, handleEditProfileClick, setIsLoggedIn }) {
+function SideBar({ handleEditProfileClick }) {
+  const { userData, setIsLoggedIn } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   function logOut() {

@@ -6,21 +6,13 @@ function Profile({
   onCardClick,
   clothingItems,
   onAddClick,
-  userData,
-  isLoggedIn,
-  setIsLoggedIn,
   handleEditProfileClick,
   onCardLike,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar
-          userData={userData}
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          handleEditProfileClick={handleEditProfileClick}
-        />
+        <SideBar handleEditProfileClick={handleEditProfileClick} />
       </section>
       <section className="profile__clothes-section">
         <ClothesSection

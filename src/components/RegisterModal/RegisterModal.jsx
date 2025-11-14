@@ -8,7 +8,7 @@ function RegisterModal({
   buttonText,
   logText,
   handleSignup,
-  onLogClick,
+  onLoginClick,
 }) {
   const defaultValues = { email: "", password: "", name: "", avatar: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
@@ -31,7 +31,7 @@ function RegisterModal({
       buttonText={buttonText}
       logText={logText}
       onClose={onClose}
-      onLogClick={onLogClick}
+      onLoginClick={onLoginClick}
       onSubmit={handleSubmit}
       isOpen={isOpen}
       onOverlayClose={onOverlayClose}
@@ -39,7 +39,7 @@ function RegisterModal({
       <label htmlFor="email" className="modal__label">
         Email*
         <input
-          id="email"
+          id="email-register"
           type="email"
           name="email"
           className="modal__input"
@@ -52,7 +52,7 @@ function RegisterModal({
       <label htmlFor="password" className="modal__label">
         Password*
         <input
-          id="password"
+          id="password-register"
           type="password"
           name="password"
           className="modal__input"
@@ -65,7 +65,7 @@ function RegisterModal({
       <label htmlFor="name" className="modal__label">
         Name*
         <input
-          id="name"
+          id="name-register"
           type="name"
           name="name"
           className="modal__input"
@@ -78,7 +78,7 @@ function RegisterModal({
       <label htmlFor="avatar" className="modal__label">
         Avatar URL*
         <input
-          id="avatar"
+          id="avatar-register"
           type="url"
           name="avatar"
           className="modal__input"
