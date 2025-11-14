@@ -1,6 +1,6 @@
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/wtwr-logo.svg";
 
@@ -19,9 +19,9 @@ function Header({
 
   return (
     <header className="header">
-      <Link to="/">
+      <NavLink to="/">
         <img className="header__logo" src={logo} alt="WTWR" />
-      </Link>
+      </NavLink>
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
@@ -36,7 +36,7 @@ function Header({
           >
             + Add clothes
           </button>
-          <Link to="/profile" className="header__link">
+          <NavLink to="/profile" className="header__link">
             <div className="header__user-container">
               <p className="header__username">{userData?.name}</p>
               {userData?.avatar ? (
@@ -51,7 +51,7 @@ function Header({
                 </div>
               )}
             </div>
-          </Link>
+          </NavLink>
         </>
       ) : (
         <>

@@ -8,8 +8,9 @@ function Profile({
   onAddClick,
   userData,
   isLoggedIn,
+  setIsLoggedIn,
   handleEditProfileClick,
-  onChangeLike,
+  onCardLike,
 }) {
   return (
     <div className="profile">
@@ -17,6 +18,7 @@ function Profile({
         <SideBar
           userData={userData}
           isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
           handleEditProfileClick={handleEditProfileClick}
         />
       </section>
@@ -25,7 +27,7 @@ function Profile({
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           onAddClick={onAddClick}
-          onChangeLike={onChangeLike}
+          onCardLike={onCardLike}
         />
       </section>
     </div>

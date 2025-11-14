@@ -168,34 +168,49 @@ function App() {
     onClose();
   };
 
-  // Card Like Handlers
-  const [isLiked, setIsLiked] = useState("");
-
-  const handleChangeLike = () => {
-    isLiked === "" ? setIsLiked("card__like-button_active") : setIsLiked("");
-  };
-
   // Card Like Handler for API
-  const handleCardLike = ({ _id, isLiked }) => {
+  const handleCardLike = (item) => {
     const token = getToken();
-    console.log({ _id });
-    console.log({ isLiked });
+    const isLiked =
+      userData && item.likes && item.likes.some((id) => id === userData._id);
+
+    const updateCard = (res) => {
+      const updatedCard = res?.data || res;
+      if (updatedCard && updatedCard._id) {
+        setClothingItems((cards) =>
+          cards.map((card) => {
+            if (card._id === item._id) {
+              return { ...card, ...updatedCard };
+            }
+            return card;
+          })
+        );
+      } else {
+        setClothingItems((cards) =>
+          cards.map((card) => {
+            if (card._id === item._id) {
+              const newLikes = isLiked
+                ? (card.likes || []).filter((id) => id !== userData._id)
+                : [...(card.likes || []), userData._id];
+              return { ...card, likes: newLikes };
+            }
+            return card;
+          })
+        );
+      }
+    };
 
     !isLiked
-      ? addCardLike(_id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard : item))
-            );
+      ? addCardLike(item._id, token)
+          .then(updateCard)
+          .catch((err) => {
+            console.log("Error adding like:", err);
           })
-          .catch((err) => console.log(err))
-      : removeCardLike(_id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err));
+      : removeCardLike(item._id, token)
+          .then(updateCard)
+          .catch((err) => {
+            console.log("Error removing like:", err);
+          });
   };
 
   // Effects Upon Main Entry
@@ -275,7 +290,6 @@ function App() {
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
-                    onChangeLike={handleChangeLike}
                   />
                 }
               ></Route>
@@ -289,8 +303,9 @@ function App() {
                       userData={userData}
                       onAddClick={onAddClick}
                       isLoggedIn={isLoggedIn}
+                      setIsLoggedIn={setIsLoggedIn}
                       handleEditProfileClick={handleEditProfileClick}
-                      onChangeLike={handleChangeLike}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

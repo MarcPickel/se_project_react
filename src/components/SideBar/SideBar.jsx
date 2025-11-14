@@ -1,6 +1,17 @@
 import "./SideBar.css";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { removeToken } from "../../utils/token";
 
-function SideBar({ userData, handleEditProfileClick }) {
+function SideBar({ userData, handleEditProfileClick, setIsLoggedIn }) {
+  const navigate = useNavigate();
+
+  function logOut() {
+    removeToken();
+    navigate("/");
+    setIsLoggedIn(false);
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebar__user-container">
@@ -24,7 +35,7 @@ function SideBar({ userData, handleEditProfileClick }) {
       >
         Change profile data
       </button>
-      <button className="sidebar__logout-button" type="button">
+      <button className="sidebar__logout-button" type="button" onClick={logOut}>
         Log out
       </button>
     </div>

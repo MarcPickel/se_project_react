@@ -7,7 +7,7 @@ function ClothesSection({
   onCardClick,
   clothingItems,
   onAddClick,
-  onChangeLike,
+  onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn =
@@ -34,7 +34,7 @@ function ClothesSection({
                   key={item._id}
                   item={item}
                   onCardClick={onCardClick}
-                  onChangeLike={onChangeLike}
+                  onCardLike={onCardLike}
                 />
               );
             })}
