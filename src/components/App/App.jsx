@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import {
   Routes,
   Route,
-  Navigate,
-  useNavigate,
-  useLocation,
 } from "react-router-dom";
 
 import "./App.css";
@@ -53,11 +50,6 @@ function App() {
 
   const [userData, setUserData] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Move isLiked useState up to here when done
-
-  const navigate = useNavigate();
-  const location = useLocation();
 
   // Auth App Methods
   const onSignupClick = () => {
@@ -113,13 +105,11 @@ function App() {
   };
 
   const openConfirmationModal = () => {
-    let card = selectedCard;
     setActiveModal("deleteConfirmation");
-    return card;
   };
 
   const handleCardDelete = () => {
-    let id = selectedCard._id;
+    const id = selectedCard._id;
     const token = getToken();
     removeItems(id, token)
       .then(() => {
@@ -360,7 +350,6 @@ function App() {
             activeModal={activeModal}
             onCardDelete={handleCardDelete}
             onClose={onClose}
-            removeItems={removeItems}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>
