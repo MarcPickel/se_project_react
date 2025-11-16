@@ -3,11 +3,15 @@ import ItemCard from "../ItemCard/ItemCard.jsx";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
-function ClothesSection({ onCardClick, clothingItems, onAddClick, onCardLike }) {
-  const currentUser = useContext(CurrentUserContext);
+function ClothesSection({
+  onCardClick,
+  clothingItems,
+  onAddClick,
+  onCardLike,
+}) {
+  const { userData } = useContext(CurrentUserContext);
   const isOwn =
-    currentUser &&
-    clothingItems.filter((item) => item.owner === currentUser.userData?._id);
+    userData && clothingItems.filter((item) => item.owner === userData?._id);
 
   return (
     <div className="clothes-section">

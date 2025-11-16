@@ -8,8 +8,6 @@ import logo from "../../assets/wtwr-logo.svg";
 
 function Header({ onAddClick, weatherData, onSignupClick, onSigninClick }) {
   const { userData, isLoggedIn } = useContext(CurrentUserContext);
-  //const isLoggedIn = currentUser.isLoggedIn;
-  //const userData = currentUser.userData;
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -37,16 +35,16 @@ function Header({ onAddClick, weatherData, onSignupClick, onSigninClick }) {
           </button>
           <NavLink to="/profile" className="header__link">
             <div className="header__user-container">
-              <p className="header__username">{userData?.name}</p>
-              {userData?.avatar ? (
+              <p className="header__username">{userData.name}</p>
+              {userData.avatar ? (
                 <img
                   className={"header__avatar"}
-                  src={userData?.avatar}
-                  alt={userData?.name}
+                  src={userData.avatar}
+                  alt={userData.name}
                 />
               ) : (
                 <div className="header__avatar-circle">
-                  <p className={"header__avatar-letter"}>{userData?.name[0]}</p>
+                  <p className={"header__avatar-letter"}>{userData.name[0]}</p>
                 </div>
               )}
             </div>

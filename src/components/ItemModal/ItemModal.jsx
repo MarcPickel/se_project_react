@@ -10,8 +10,8 @@ function ItemModal({
   onOverlayClose,
   onConfirm,
 }) {
-  const currentUser = useContext(CurrentUserContext);
-  const isOwn = currentUser && card.owner === currentUser._id;
+  const { userData, isLoggedIn } = useContext(CurrentUserContext);
+  const isOwn = userData && card.owner === userData._id;
 
   return (
     <div
@@ -32,7 +32,7 @@ function ItemModal({
             <h2 className="modal__caption">{card.name}</h2>
             <p className="modal__weather">Weather: {card.weather}</p>
           </div>
-          {isOwn && (
+          {isOwn && isLoggedIn && (
             <button
               onClick={onConfirm}
               type="button"

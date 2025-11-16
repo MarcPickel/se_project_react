@@ -14,7 +14,7 @@ function EditProfileModal({
 }) {
   // default values should match editable fields (name, avatar)
   const defaultValues = { name: "", avatar: "" };
-  const userData = useContext(CurrentUserContext);
+  const { userData } = useContext(CurrentUserContext);
 
   const { values, setValues, handleChange, handleReset } =
     useForm(defaultValues);
