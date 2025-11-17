@@ -1,24 +1,17 @@
 import "./ItemModal.css";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import useModalClose from "../../hooks/useModalClose";
 
-function ItemModal({
-  activeModal,
-  name,
-  card,
-  onClose,
-  onOverlayClose,
-  onConfirm,
-}) {
+function ItemModal({ name, card, onClose, isOpen, onConfirm }) {
   const { userData, isLoggedIn } = useContext(CurrentUserContext);
   const isOwn = userData && card.owner === userData._id;
+  useModalClose(isOpen, onClose);
 
   return (
     <div
-      onClick={onOverlayClose}
-      className={`modal ${
-        activeModal === "preview" && "modal_opened"
-      } modal_type_${name}`}
+      //onClick={onOverlayClose}
+      className={`modal ${isOpen && "modal_opened"} modal_type_${name}`}
     >
       <div className="modal__content modal__content_type_image">
         <button

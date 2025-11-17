@@ -4,7 +4,6 @@ import useForm from "../../hooks/useForm.js";
 function RegisterModal({
   isOpen,
   onClose,
-  onOverlayClose,
   buttonText,
   logText,
   handleSignup,
@@ -34,7 +33,6 @@ function RegisterModal({
       onLoginClick={onLoginClick}
       onSubmit={handleSubmit}
       isOpen={isOpen}
-      onOverlayClose={onOverlayClose}
     >
       <label htmlFor="email-register" className="modal__label">
         Email*

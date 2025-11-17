@@ -5,7 +5,6 @@ import useForm from "../../hooks/useForm.js";
 function LoginModal({
   isOpen,
   onClose,
-  onOverlayClose,
   buttonText,
   regText,
   handleSignin,
@@ -60,7 +59,6 @@ function LoginModal({
       onRegisterClick={onRegisterClick}
       onSubmit={handleSubmit}
       isOpen={isOpen}
-      onOverlayClose={onOverlayClose}
     >
       <label
         htmlFor="email-login"

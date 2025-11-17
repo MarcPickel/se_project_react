@@ -1,4 +1,5 @@
 import "./ModalWithForm.css";
+import useModalClose from "../../hooks/useModalClose";
 
 function ModalWithForm({
   children,
@@ -9,17 +10,17 @@ function ModalWithForm({
   regText,
   isOpen,
   onClose,
-  onOverlayClose,
   onSubmit,
   onLoginClick,
   onRegisterClick,
 }) {
   const isRegistered = name === "signup";
   const isLoggedIn = name === "signin";
+  useModalClose(isOpen, onClose);
 
   return (
     <div
-      onClick={onOverlayClose}
+      //onClick={onOverlayClose}
       className={`modal ${isOpen && "modal_opened"} modal_type_${name}`}
     >
       <div className="modal__form-content">

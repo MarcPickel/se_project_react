@@ -1,18 +1,11 @@
 import "./DeleteConfirmationModal.css";
+import useModalClose from "../../hooks/useModalClose";
 
-function DeleteConfirmationModal({
-  activeModal,
-  name,
-  onCardDelete,
-  onClose,
-}) {
+function DeleteConfirmationModal({ name, isOpen, onCardDelete, onClose }) {
+  useModalClose(isOpen, onClose);
 
   return (
-    <div
-      className={`modal ${
-        activeModal === "deleteConfirmation" && "modal_opened"
-      } modal_type_${name}`}
-    >
+    <div className={`modal ${isOpen && "modal_opened"} modal_type_${name}`}>
       <div className="modal__content modal__content_type_confirm">
         <button
           onClick={onClose}

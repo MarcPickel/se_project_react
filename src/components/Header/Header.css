@@ -40,6 +40,7 @@
 
 .header__avatar {
   margin-left: 24px;
+  width: 40px;
 }
 
 .header__avatar-circle {

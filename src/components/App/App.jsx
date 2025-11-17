@@ -174,7 +174,7 @@ function App() {
               cards.map((item) => (item._id === _id ? card : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch(console.error);
   };
 
   // Effects Upon Main Entry
@@ -285,7 +285,6 @@ function App() {
             logText={"or Log in"}
             onClose={onClose}
             onLoginClick={onLoginClick}
-            onOverlayClose={handleOverlayClose}
             handleSignup={handleSignup}
           />
           <LoginModal
@@ -294,14 +293,12 @@ function App() {
             regText={"or Register"}
             onClose={onClose}
             onRegisterClick={onRegisterClick}
-            onOverlayClose={handleOverlayClose}
             handleSignin={handleSignin}
           />
           <EditProfileModal
             isOpen={activeModal === "edit-profile"}
             buttonText={"Save changes"}
             onClose={onClose}
-            onOverlayClose={handleOverlayClose}
             editProfile={editProfile}
             onEditProfile={onEditProfile}
           />
@@ -310,20 +307,16 @@ function App() {
             isOpen={activeModal === "add-garment"}
             onClose={onClose}
             onAddItem={onAddItem}
-            onOverlayClose={handleOverlayClose}
             postItems={postItems}
           />
           <ItemModal
-            name="preview"
-            activeModal={activeModal}
+            isOpen={activeModal === "preview"}
             card={selectedCard}
             onClose={onClose}
-            onOverlayClose={handleOverlayClose}
             onConfirm={openConfirmationModal}
           />
           <DeleteConfirmationModal
-            name="deleteConfirmation"
-            activeModal={activeModal}
+            isOpen={activeModal === "deleteConfirmation"}
             onCardDelete={handleCardDelete}
             onClose={onClose}
           />

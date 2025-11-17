@@ -2,14 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 import { getToken } from "../../utils/token.js";
 
-function AddItemModal({
-  isOpen,
-  onAddItem,
-  onClose,
-  onOverlayClose,
-  buttonText,
-  postItems,
-}) {
+function AddItemModal({ isOpen, onAddItem, onClose, buttonText, postItems }) {
   const defaultValues = { name: "", imageUrl: "", weather: "" };
   const { values, handleChange, handleReset } = useForm(defaultValues);
   const token = getToken();
@@ -33,7 +26,6 @@ function AddItemModal({
       onClose={onClose}
       onSubmit={handleSubmit}
       isOpen={isOpen}
-      onOverlayClose={onOverlayClose}
     >
       <label htmlFor="name" className="modal__label">
         Name
