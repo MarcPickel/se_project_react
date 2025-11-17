@@ -27,7 +27,7 @@ function AddItemModal({ isOpen, onAddItem, onClose, buttonText, postItems }) {
       onSubmit={handleSubmit}
       isOpen={isOpen}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="name-add" className="modal__label">
         Name
         <input
           id="name-add"
