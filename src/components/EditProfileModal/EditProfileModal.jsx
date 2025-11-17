@@ -49,7 +49,7 @@ function EditProfileModal({
       isOpen={isOpen}
       onOverlayClose={onOverlayClose}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="name-edit" className="modal__label">
         Name*
         <input
           id="name-edit"
@@ -64,7 +64,7 @@ function EditProfileModal({
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="avatar-edit" className="modal__label">
         Avatar
         <input
           id="avatar-edit"

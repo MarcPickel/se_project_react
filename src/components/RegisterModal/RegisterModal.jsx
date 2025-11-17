@@ -36,7 +36,7 @@ function RegisterModal({
       isOpen={isOpen}
       onOverlayClose={onOverlayClose}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="email-register" className="modal__label">
         Email*
         <input
           id="email-register"
@@ -49,7 +49,7 @@ function RegisterModal({
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="password-register" className="modal__label">
         Password*
         <input
           id="password-register"
@@ -62,7 +62,7 @@ function RegisterModal({
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="name-register" className="modal__label">
         Name*
         <input
           id="name-register"
@@ -75,7 +75,7 @@ function RegisterModal({
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="avatar-register" className="modal__label">
         Avatar URL*
         <input
           id="avatar-register"

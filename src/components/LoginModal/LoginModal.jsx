@@ -63,7 +63,7 @@ function LoginModal({
       onOverlayClose={onOverlayClose}
     >
       <label
-        htmlFor="email"
+        htmlFor="email-login"
         className={`modal__label ${emailError ? "modal__label-error" : ""}`}
       >
         {emailError ? "Incorrect email" : "Email"}
@@ -79,7 +79,7 @@ function LoginModal({
         />
       </label>
       <label
-        htmlFor="password"
+        htmlFor="password-login"
         className={`modal__label ${passwordError ? "modal__label-error" : ""}`}
       >
         {passwordError ? "Incorrect password" : "Password"}
