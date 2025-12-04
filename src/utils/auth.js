@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl = process.env.NODE_ENV === "production" 
+  ? "https://api.what.to.wear.jumpingcrab.com"
+  : "http://localhost:3001";
+
 import { checkResponse } from "./api";
 
 const register = (email, password, name, avatar) => {
