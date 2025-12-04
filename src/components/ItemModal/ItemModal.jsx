@@ -6,6 +6,11 @@ import useModalClose from "../../hooks/useModalClose";
 function ItemModal({ name, card, onClose, isOpen, onConfirm }) {
   const { userData, isLoggedIn } = useContext(CurrentUserContext);
   const isOwn = userData && card.owner === userData._id;
+  console.log("isOwn:", isOwn);
+  console.log("userData:", userData);
+  console.log("card.owner:", card.owner);
+  console.log("card:", card);
+
   useModalClose(isOpen, onClose);
 
   return (

@@ -81,7 +81,7 @@ function App() {
     }
   };
 
-  const onAddItem = (inputValues) => {
+  /*const onAddItem = (inputValues) => {
     const newCardData = {
       _id: inputValues._id,
       name: inputValues.name,
@@ -89,6 +89,11 @@ function App() {
       imageUrl: inputValues.imageUrl,
     };
     setClothingItems([newCardData, ...clothingItems]);
+    onClose();
+  };*/
+
+  const onAddItem = (newItem) => {
+    setClothingItems([newItem, ...clothingItems]);
     onClose();
   };
 
@@ -119,12 +124,14 @@ function App() {
 
   // Auth Handlers
   const handleSignup = ({ email, password, name, avatar }) => {
+    console.log(email, password, name, avatar);
     return auth.register(email, password, name, avatar).then(() => {
       return handleSignin({ email, password });
     });
   };
 
   const handleSignin = ({ email, password }) => {
+    console.log(email, password);
     if (!email || !password) {
       return Promise.reject("Email and password are required");
     }
@@ -190,6 +197,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
+        console.log("Data from useEffect, getItems():", data);
         const itemsArray = Array.isArray(data?.data) ? data.data : [];
         setClothingItems(itemsArray);
       })

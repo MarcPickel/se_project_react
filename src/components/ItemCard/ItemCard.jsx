@@ -4,8 +4,8 @@ import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
-  // Check if the item was liked by the current user
-  // The likes array should be an array of ids
+  console.log("ItemCard/Item:", item);
+
   const isLiked =
     item.likes?.some((id) => id === currentUser.userData?._id) ?? false;
   const itemLikeButtonClassName = "card__like-button_active";
