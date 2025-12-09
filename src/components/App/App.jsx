@@ -75,23 +75,6 @@ function App() {
     setActiveModal("");
   };
 
-  const handleOverlayClose = (evt) => {
-    if (evt.target.classList.contains("modal")) {
-      onClose();
-    }
-  };
-
-  /*const onAddItem = (inputValues) => {
-    const newCardData = {
-      _id: inputValues._id,
-      name: inputValues.name,
-      weather: inputValues.weather,
-      imageUrl: inputValues.imageUrl,
-    };
-    setClothingItems([newCardData, ...clothingItems]);
-    onClose();
-  };*/
-
   const onAddItem = (newItem) => {
     setClothingItems([newItem, ...clothingItems]);
     onClose();
@@ -124,14 +107,12 @@ function App() {
 
   // Auth Handlers
   const handleSignup = ({ email, password, name, avatar }) => {
-    console.log(email, password, name, avatar);
     return auth.register(email, password, name, avatar).then(() => {
       return handleSignin({ email, password });
     });
   };
 
   const handleSignin = ({ email, password }) => {
-    console.log(email, password);
     if (!email || !password) {
       return Promise.reject("Email and password are required");
     }
@@ -173,7 +154,7 @@ function App() {
               cards.map((item) => (item._id === _id ? card : item))
             );
           })
-          .catch((err) => console.log(err))
+          .catch(console.error)
       : removeCardLike(_id, token)
           .then((updatedCard) => {
             const card = updatedCard?.data || updatedCard;
@@ -197,7 +178,6 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log("Data from useEffect, getItems():", data);
         const itemsArray = Array.isArray(data?.data) ? data.data : [];
         setClothingItems(itemsArray);
       })
